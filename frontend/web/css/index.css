@@ -1,0 +1,161 @@
+body {
+    position: relative;
+}
+.aa {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.aa1 {
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+.a1 {
+    height: 30px;
+    font-size: 13px;
+}
+
+.input {
+    width: 200px;
+}
+
+.content {
+    height: 500px;
+    width: 100%;
+}
+
+.header {
+    height: 61px;
+    width: 307px;
+}
+
+.ph {
+    height: 300px;
+    /*width: 300px;*/
+    /*margin: 10px;*/
+}
+
+.ph1 {
+    /* margin-top: 50px; */
+    /* margin-bottom: 50px; */
+}
+
+.picture {
+    height: 300px;
+    width: 100%;
+}
+
+.picture2{
+    margin: 10px;
+    height: 350px;
+    /*background-color: red;*/
+}
+
+/** 详情的图片 */
+.detailsPicture {
+    margin: 20px 0px 20px 10px;
+    height: 430px;
+    /*background-color: red;*/
+
+}
+
+.title {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.title1 {
+    margin-top: 40px;
+    /*margin-bottom: 40px;*/
+}
+
+.detailsTitle {
+    margin-top: 50px;
+    /*margin-right: 30px;*/
+}
+
+.more {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.more1 {
+    text-decoration: none;
+    color: #444;
+}
+
+.more2 {
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.lefta {
+    float: left;
+}
+.righta {
+    float: right;
+}
+
+.kapian {
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;display: block;
+}
+
+/* knowledges */
+
+.kapian2 {
+    /*overflow: hidden;text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+}
+.kapian3 {
+    overflow: hidden;white-space: nowrap;text-overflow: ellipsis;display: block;
+}
+
+
+
+/**rancking */
+.fa-heart{
+    font-size: 2rem;
+    color: #ddd;
+    cursor: pointer;
+    transition: transform 0.5s;}
+.like{color: red;}
+.fa-heart:active{
+    color: red;
+    transform: scale(2,2);
+    transition: transform 0.1s;}
+
+
+/** 加减 */
+.gw_num{border: 1px solid #dbdbdb;width: 110px;line-height: 26px;overflow: hidden;}
+.gw_num em{display: block;height: 26px;width: 26px;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
+.gw_num .num{display: block;float: left;text-align: center;width: 52px;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
+.gw_num em.add{float: right;border-right: 0;border-left: 1px solid #dbdbdb;}
+.details{border: none}
+.hidden {display: none}
+
+.suojin {
+    text-indent: 2em;
+    margin: 1px;
+}
+div#w1-success-0 {
+    opacity: 1;
+}
+div#w0-success-0 {
+    opacity: 1;
+}
+
+div#w1-error-0 {
+    opacity: 1;
+}
+div#w0-error-0 {
+    opacity: 1;
+}
