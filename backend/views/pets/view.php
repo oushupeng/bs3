@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('更新', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('返回', ['index'], ['class' => 'btn btn-success']) ?>
         <?= Html::a('删除', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -32,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'category',
             'price',
             'sales',
-            'remark',
+            'content',
             'created_by',
             'created_at:datetime',
             [

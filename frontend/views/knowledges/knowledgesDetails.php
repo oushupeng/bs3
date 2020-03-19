@@ -33,6 +33,7 @@ use yii\helpers\Html; ?>
     </div>
 </div>
 
+<div class="container-fluid pt">
 <div class="container">
     <div class="row" style="background-color: #f6f6f6;margin-top: 40px;padding: 80px">
 <!--        <div class="col-md-12">-->
@@ -62,7 +63,7 @@ use yii\helpers\Html; ?>
             <div class="" style="margin-top: 100px;">
                 版权声明<br>
                 本文来源于网络，并不代表本站真实立场。<br><hr>
-            <?php if ($model->id === 1)  {?>
+            <?php if ($model->id === $model1->id)  {?>
 
                 下一篇：
                 <?= Html::a($model4->title, ['add', 'id' => $model4->id], [
@@ -104,7 +105,7 @@ use yii\helpers\Html; ?>
 
     </div>
 </div>
-
+</div>
 
 </body>
 </html>

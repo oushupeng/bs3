@@ -2,6 +2,7 @@
 namespace common\models;
 
 use Yii;
+use yii\base\Exception;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -29,7 +30,6 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
-
 
     /**
      * {@inheritdoc}
@@ -171,9 +171,11 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * 从password生成密码散列并将其设置为模型
      * Generates password hash from password and sets it to the model
      *
      * @param string $password
+     * @throws Exception
      */
     public function setPassword($password)
     {
@@ -181,6 +183,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * 生成“记住我”身份验证密钥
      * Generates "remember me" authentication key
      */
     public function generateAuthKey()
@@ -189,6 +192,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * 生成新的密码重置令牌
      * Generates new password reset token
      */
     public function generatePasswordResetToken()
@@ -197,6 +201,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * 生成用于电子邮件验证的新令牌
      * Generates new token for email verification
      */
     public function generateEmailVerificationToken()
@@ -205,6 +210,7 @@ class User extends ActiveRecord implements IdentityInterface
     }
 
     /**
+     * 删除密码重置令牌
      * Removes password reset token
      */
     public function removePasswordResetToken()

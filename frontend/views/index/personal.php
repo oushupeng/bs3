@@ -2,6 +2,7 @@
 <?php
 
 use yii\helpers\Html;
+
 $username = Yii::$app->user->identity->username;
 $email = Yii::$app->user->identity->email;
 
@@ -36,22 +37,26 @@ $email = Yii::$app->user->identity->email;
     </div>
 </div>
 
-<div class="container-fluid ph1">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container-fluid ph1 pt">
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
-                <div class=" title" style="">
-                    <form>
-                        <div class="form-group">
-                            <label for="inputAddress">用户名</label>
-                            <input type="text" class="form-control" id="inputAddress"  value="<?= $username?>" disabled="disabled">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2">邮箱</label>
-                            <input type="text" class="form-control" id="inputAddress2"  value="<?= $email?>" disabled="disabled">
-                        </div>
-                        修改密码？<?= Html::a('点击这', ['site/update-password']) ?>
-                    </form>
+                <div class="col-md-12">
+                    <div class=" title" style="">
+                        <form>
+                            <div class="form-group">
+                                <label for="inputAddress">用户名</label>
+                                <input type="text" class="form-control" id="inputAddress" value="<?= $username ?>"
+                                       disabled="disabled">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress2">邮箱</label>
+                                <input type="text" class="form-control" id="inputAddress2" value="<?= $email ?>"
+                                       disabled="disabled">
+                            </div>
+                            修改密码？<?= Html::a('点击这', ['site/update-password']) ?>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -42,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => '操作',
-                'template' => '{view}',
+                'template' => '{view} {update}',
                 'buttons' => [
                     // 下面代码来自于 yii\grid\ActionColumn 简单修改了下
                     'view' => function ($url, $model, $key) {
@@ -50,8 +50,22 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', '查看'),
                             'aria-label' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
+                            'class' => 'btn btn-primary btn-xs',
+
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                        return Html::a('查看', $url, $options);
+                    },
+                    'update' => function ($url, $model, $key) {
+                        $options = [
+                            'title' => Yii::t('yii', '执行发货'),
+                            'aria-label' => Yii::t('yii', 'Update'),
+                            'data-pjax' => '0',
+                            'class' => 'btn btn-success btn-xs',
+                        ];
+//                        var_dump($model->status);die();
+                        if ($model->status === '代发货') {
+                        return Html::a('执行', $url, $options);
+                        }
                     },
                 ]
             ],

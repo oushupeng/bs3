@@ -25,6 +25,7 @@ class m200126_091901_create_orders_table extends Migration
             'consignee' => $this->string()->defaultValue('')->notNull()->comment('收货人'),
             'telephone' => $this->bigInteger()->defaultValue(0)->notNull()->comment('电话号码'),
             'address' => $this->string()->defaultValue('')->notNull()->comment('收货地址'),
+            'remarks' => $this->string()->defaultValue('')->notNull()->comment('订单备注'),
             'payment' => $this->string()->defaultValue('')->notNull()->comment('付款方式，alipay：支付宝，wechat：微信'),
             'delivery' => $this->string()->defaultValue('')->notNull()->comment('送货方式，mail：邮寄，cash-on-delivery：货到付款'),
             'status' => $this->string()->defaultValue('')->notNull()->comment('订单状态，pay：代付款，send：代发货，receiving：待收货，evaluate：评价'),

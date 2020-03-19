@@ -21,7 +21,7 @@ class m200124_073440_create_notices_table extends Migration
         $this->createTable('{{%notices}}', [
             'id' => $this->primaryKey(),
             'title' => $this->string()->defaultValue('')->notNull()->comment('标题'),
-            'content' => $this->string()->defaultValue('')->notNull()->comment('内容'),
+            'content' => $this->text()->notNull()->comment('内容'),
 
 
             'created_by' => $this->string()->defaultValue('')->notNull()->comment('创建人'),

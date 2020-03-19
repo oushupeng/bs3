@@ -1,5 +1,6 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -19,16 +20,32 @@ $this->params['breadcrumbs'][] = $this->title;
 //        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
+            [
+                'attribute' => 'head',
+                'format' => ['raw',],
+                'value' => function($model){
+                    return Html::img($model->head,['class' => 'img-circle','height' => '70']);
+                }
+            ],
             'username',
             'email:email',
-            'status',
             'last_login_time:datetime',
             'created_at:datetime',
             [
+                'attribute' => 'status',
+                'value' => function($model){
+                    if ($model->status === User::STATUS_ACTIVE){
+                        return '已激活';
+                    }
+                    return '未激活';
+                },
+                'footerOptions' => ['class'=>'hide']
+            ],
+
+            [
                 'class' => 'yii\grid\ActionColumn',
                 'header' => '操作',
-                'template' => '{view}',
+                'template' => '{view} {frozen}',
                 'buttons' => [
                     // 下面代码来自于 yii\grid\ActionColumn 简单修改了下
                     'view' => function ($url, $model, $key) {
@@ -36,8 +53,29 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', '查看'),
                             'aria-label' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
+                            'class' => 'btn btn-primary btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                        return Html::a('查看', $url, $options);
+                    },
+
+                    'frozen' => function ($url, $model, $key) {
+                        $options1 = [
+                            'title' => Yii::t('yii', '冻结'),
+                            'aria-label' => Yii::t('yii', 'View'),
+                            'data-pjax' => '0',
+                            'class' => 'btn btn-danger btn-xs',
+                        ];
+                        $options2 = [
+                            'title' => Yii::t('yii', '解冻'),
+                            'aria-label' => Yii::t('yii', 'View'),
+                            'data-pjax' => '0',
+                            'class' => 'btn btn-danger btn-xs',
+                        ];
+
+                        if ($model->status === User::STATUS_ACTIVE) {
+                            return Html::a('冻结', $url, $options1);
+                        }
+                        return Html::a('解冻', $url, $options2);
                     },
                 ]
             ],

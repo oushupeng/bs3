@@ -26,7 +26,7 @@ use yii\widgets\LinkPager;
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <a href="">
-                    <img class="d-block w-100 picture" src="../views/public/image/c9.jpg" alt="First slide">
+                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -39,7 +39,8 @@ use yii\widgets\LinkPager;
     </div>
 </div>
 
-<div class="container-fluid ph1">
+<div class="container-fluid pt">
+<div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-12">
@@ -52,10 +53,10 @@ use yii\widgets\LinkPager;
                                 <td colspan="4"><h2>商品内容</h2></td>
                             </tr>
                             <tr>
-                                <th scope="col">商品名称</th>
-                                <th scope="col">商品价格</th>
-                                <th scope="col">商品数量</th>
-                                <th scope="col">商品总价</th>
+                                <th scope="col">宠物猫类别</th>
+                                <th scope="col">宠物猫价格</th>
+                                <th scope="col">宠物猫数量</th>
+                                <th scope="col">总价</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -63,7 +64,7 @@ use yii\widgets\LinkPager;
                             <tr id="tab">
 
                                 <td scope="row">
-                                    <?= Html::textInput('shopCart[pets_name]', $model->name, ['class' => 'details', 'onfocus' => 'this.blur()']) ?>
+                                    <?= Html::textInput('shopCart[pets_category]', $model->category, ['class' => 'details', 'onfocus' => 'this.blur()']) ?>
                                 </td>
 
                                 <td scope="row">
@@ -150,7 +151,7 @@ use yii\widgets\LinkPager;
         </div>
     </div>
 </div>
-
+</div>
 <?php ActiveForm::end(); ?>
 <script language="javascript" type="text/javascript">
     function checkfun() {

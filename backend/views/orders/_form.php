@@ -10,25 +10,25 @@ use yii\widgets\ActiveForm;
 
 <div class="orders-form">
 
-    <?php $form = ActiveForm::begin(['action' => ['create'],'method' => 'post']); ?>
+    <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'order_id')->textInput() ?>
-
-    <?= $form->field($model, 'amount')->textInput() ?>
-
-    <?= $form->field($model, 'consignee')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'telephone')->textInput() ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'payment')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'delivery')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'express_id')->textInput() ?>
+<!--    --><?//= $form->field($model, 'order_id')->textInput() ?>
+<!---->
+<!--    --><?//= $form->field($model, 'amount')->textInput() ?>
+<!---->
+<!--    --><?//= $form->field($model, 'consignee')->textInput(['maxlength' => true]) ?>
+<!---->
+<!--    --><?//= $form->field($model, 'telephone')->textInput() ?>
+<!---->
+<!--    --><?//= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
+<!---->
+<!--    --><?//= $form->field($model, 'payment')->textInput(['maxlength' => true]) ?>
+<!---->
+<!--    --><?//= $form->field($model, 'delivery')->textInput(['maxlength' => true]) ?>
+<!---->
+<!--    --><?//= $form->field($model, 'status')->textInput(['maxlength' => true]) ?>
+<!---->
+<!--    --><?//= $form->field($model, 'express_id')->textInput() ?>
 
     <?= $form->field($model, 'courier_number')->textInput() ?>
 
@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
 <!--    --><?//= $form->field($model, 'deleted_at')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('提交', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

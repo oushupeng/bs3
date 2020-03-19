@@ -33,7 +33,7 @@ class IndexController extends Controller
         $model1 = Pets::find()->orderBy(['sales' => SORT_DESC])->limit(8)->all();
         $model2 = Pets::find()->orderBy(['created_at' => SORT_DESC])->limit(8)->all();
         $model3 = Notices::find()->orderBy(['created_at' => SORT_DESC])->limit(8)->all();
-        $model4 = Pets::find()->limit(26)->all();
+        $model4 = Pets::find()->limit(16)->all();
 
         return $this->render('index',[
                 'model' => $model,

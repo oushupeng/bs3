@@ -11,14 +11,15 @@ use backend\models\ShopCart;
  */
 class SerachShopCart extends ShopCart
 {
+
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['id', 'pets_id', 'pets_name','user_id', 'pets_num', 'pets_price', 'sum','created_at', 'deleted_at'], 'integer'],
-            [['user_name', 'created_by'], 'safe'],
+            [['id', 'pets_id','user_id', 'pets_num', 'pets_price', 'sum','created_at', 'deleted_at'], 'integer'],
+            [['user_name', 'pets_category', 'created_by'], 'safe'],
         ];
     }
 
@@ -48,7 +49,8 @@ class SerachShopCart extends ShopCart
             'query' => $query,
             'pagination' =>[
                 'pageSize' => '10',
-            ]
+            ],
+            'sort' => ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -72,7 +74,7 @@ class SerachShopCart extends ShopCart
         ]);
 
         $query->andFilterWhere(['like', 'user_name', $this->user_name])
-            ->andFilterWhere(['like', 'pets_name', $this->pets_name])
+            ->andFilterWhere(['like', 'pets_category', $this->pets_category])
             ->andFilterWhere(['like', 'created_by', $this->created_by]);
 
         return $dataProvider;

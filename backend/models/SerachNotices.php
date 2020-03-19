@@ -48,7 +48,8 @@ class SerachNotices extends Notices
             'query' => $query,
             'pagination' =>[
                 'pageSize' => '10',
-            ]
+            ],
+            'sort' => ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -63,7 +64,7 @@ class SerachNotices extends Notices
         $query->andFilterWhere([
             'id' => $this->id,
             'created_at' => $this->created_at,
-            'deleted_at' => $this->deleted_at,
+            'deleted_at' => 0,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

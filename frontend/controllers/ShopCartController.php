@@ -23,7 +23,8 @@ class ShopCartController extends Controller
     public function actionShopCart()
     {
         $username = Yii::$app->user->identity->username;
-        $model = ShopCart::find()->where(['user_name' => $username])->orderBy(['created_at' => SORT_DESC])->all();
+//        $model = ShopCart::find()->where(['user_name' => $username])->orderBy(['created_at' => SORT_DESC])->all();
+        $model = ShopCart::find()->innerJoinWith(['pet'])->where(['user_name' => $username])->orderBy(['created_at' => SORT_DESC])->all();
         return $this->render('shopCart', ['model' => $model]);
     }
 
@@ -42,7 +43,59 @@ class ShopCartController extends Controller
         return $this->redirect(['shop-cart']);
     }
 
+    /**
+     * 清空购物车
+     * @return Response
+     */
+    public function actionClear()
+    {
+        $username = Yii::$app->user->identity->username;
+//        $clear = ShopCart::find()->where(['created_by' => $username])->all();
+        ShopCart::deleteAll(['created_by' => $username]);
+        Yii::$app->getSession()->setFlash('success',' 清空购物车完成');
+        return $this->redirect(['shop-cart']);
+    }
 
+    /**
+     * 批量删除
+     * @return int
+     */
+    public function actionDeleteAll()
+    {
+//        return ShopCart::updateAll(['deleted_at' => time()], ['id' => Yii::$app->request->post('arr_id')]);
+        var_dump(Yii::$app->request->post('arr_id'));die();
+//        return ShopCart::deleteAll(['in','id',Yii::$app->request->post('arr_id')]);
+    }
+
+    public function actionSettlement()
+    {
+
+        //获取单个总价
+        $sum1 = $_POST['sum1'];
+        //获取总价
+        $sum = $_POST['sum'];
+        //获取id
+        $shopId = $_POST['shopId'];
+        $aa = explode(',',$shopId);
+        $query = ShopCart::find();
+        $model = $query->select('*')->where(['id' => $aa])->all();
+
+
+        return $this->render('ordersForm',[
+            'model' => $model,
+            'sum' => $sum,
+            'sum1' => $sum1,
+        ]);
+
+    }
+
+
+    /**
+     * 购物车下单
+     * @param $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
     public function actionDetails($id)
     {
         $model = $this->findModel($id);

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\SerachPets */
@@ -15,10 +16,20 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php  echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
+        'options' => [
+            'class' => 'grid-view',
+            'style'=>'overflow:auto',
+            'id' => 'grid',
+        ],
         'dataProvider' => $dataProvider,
         'columns' => [
+            [
+                'class'=>'yii\grid\CheckboxColumn',
+                'name'=>'id',  //设置每行数据的复选框属性
+                'headerOptions' => ['width'=>'30'],
+            ],
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
+            'pets_id',
             'name',
             'category',
             'price',
@@ -37,26 +48,34 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', '查看'),
                             'aria-label' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
+                            'class' => 'btn btn-primary btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+//                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                        return Html::a('查看', $url, $options);
                     },
                     'update' => function ($url, $model, $key) {
                         $options = [
                             'title' => Yii::t('yii', '更新'),
                             'aria-label' => Yii::t('yii', 'Update'),
                             'data-pjax' => '0',
+                            'class' => 'btn btn-success btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
+//                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
+                        return Html::a('更新', $url, $options);
+
                     },
                     'delete' => function ($url, $model, $key) {
                         $options = [
                             'title' => Yii::t('yii', '删除'),
                             'aria-label' => Yii::t('yii', 'Delete'),
-                            'data-confirm' => Yii::t('yii', '确实要删除此跳数据吗？'),
+                            'data-confirm' => Yii::t('yii', '确实要删除此条数据吗？'),
                             'data-method' => 'post',
                             'data-pjax' => '0',
+                            'class' => 'btn btn-danger btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+//                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+                        return Html::a('删除', $url, $options);
+
                     },
                 ]
             ],
@@ -76,3 +95,31 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 </div>
+<script src="/bs3/frontend/web/js/jquery-3.3.1.min.js"></script>
+
+<script type="text/javascript">
+
+    $(".gridview").on("click", function () {
+
+        if(confirm('您确定要删除吗1？')){
+
+        var keys = $("#grid").yiiGridView("getSelectedRows");
+
+        //post提交
+        $.post('<?=Url::to(['deleteall']);?>',
+            {
+                arr_id:keys,
+            },
+
+            //返回数据
+            function(data,status){
+                if (status === "success") {
+                    alert("成功删除数据"+data+"条");
+                    window.location.reload();//刷新当前页面.
+                }else{
+                    alert("删除失败");
+                    window.location.reload();//刷新当前页面.
+                }
+            });
+    }});
+</script>

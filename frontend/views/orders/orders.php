@@ -22,7 +22,7 @@ $num=1;
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <a href="">
-                    <img class="d-block w-100 picture" src="../views/public/image/c9.jpg" alt="First slide">
+                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -35,16 +35,47 @@ $num=1;
     </div>
 </div>
 
+<div class="container-fluid pt">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center title" style="">
+                    <h2>订单中心 </h2>
+                    <p>查看自己的订单。。。</p>
+                </div>
+                <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
+            </div>
+        </div>
+    </div>
+
+<?php if (!$model) { ?>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class=" text-center" style="margin-top: 1%">
+                    <h4>你的订单看看如也，赶快去购买吧！！！</h4>
+                    <p>。。。。。。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<?php } else { ?>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="col-md-12">
-                <div class="text-center title" style="">
-                    <table class="table table-hover">
+                <div class="text-center" style="margin-top: 1%">
+                    <table class="table table-striped text-left">
                         <thead>
                         <tr>
                             <th scope="col">订单号</th>
-                            <th scope="col">商品名称</th>
+                            <th scope="col">商品信息</th>
                             <th scope="col">单价</th>
                             <th scope="col">数量</th>
                             <th scope="col">金额</th>
@@ -53,29 +84,50 @@ $num=1;
                         </tr>
                         </thead>
                         <tbody>
-                        <? foreach ($model as $m) {
+                        <?php foreach ($model as $m) {
                             $order = $m->order;
                             $pet = $m->name;
                             ?>
 
                             <tr>
                                 <th scope="row"><?= $order['order_id'] ?></th>
-                                <td><?= Html::a($pet['name'], ['/pets/details', 'id' => $pet->id]) ?></td>
+                                <td>
+                                    <?= Html::img($pet->picture,['class' => '','height' => '100'])?>
+                                    <?= Html::a($pet['category'], ['/pets/details', 'id' => $pet->id]) ?>
+                                </td>
                                 <td><?= $m['pets_price'] ?></td>
                                 <td><?=$m['pets_num'] ?></td>
                                 <td><?=$order['amount'] ?></td>
                                 <td><?=$order['status'] ?></td>
                                 <td>
                                     <?= Html::a('详情',['orders-details','id' => $m->id])?>
-                                    <?= Html::a('删除',['delete','id' => $m->id],[
-                                        'data' => [
-                                            'confirm' => '您确定要删除吗?',
-                                            'method' => 'post',
-                                            'params' => [
-                                                'params_key' => 'params_val'
-                                            ]
-                                        ],
-                                    ])?>
+
+
+                                    <?php if ($order->status === '代付款') { ?>
+                                        <?= Html::a('取消',['delete','id' => $m->id],[
+                                            'data' => [
+                                                'confirm' => '您确定要取消订单吗，取消后不能恢复哦?',
+                                                'method' => 'post',
+                                                'params' => [
+                                                    'params_key' => 'params_val'
+                                                ]
+                                            ],
+                                        ])?>
+
+                                    <?php } else { ?>
+                                        <?= Html::a('删除',['delete','id' => $m->id],[
+                                            'data' => [
+                                                'confirm' => '您确定要删除吗，删除后不能恢复哦?',
+                                                'method' => 'post',
+                                                'params' => [
+                                                    'params_key' => 'params_val'
+                                                ]
+                                            ],
+                                        ])?>
+                                    <?php } ?>
+
+
+
                                 </td>
                             </tr>
 
@@ -85,7 +137,6 @@ $num=1;
                     </table>
 
                 </div>
-            </div>
         </div>
     </div>
 
@@ -102,8 +153,12 @@ $num=1;
     ]) ?>
 </nav>
 
+</div>
 
 
+<?php } ?>
+
+</div>
 </body>
 
 </html>

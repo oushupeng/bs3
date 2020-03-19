@@ -65,12 +65,9 @@ class LoginFormAdmin extends Model
                 }
                 return false;
             }else {
-
-
                 echo "<script> alert('对不起，你不是管理员，你没有权限登录后台管理系统'); </script>";
             }
         }
-
         return false;
     }
 

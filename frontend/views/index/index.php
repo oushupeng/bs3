@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
@@ -61,143 +62,135 @@ use yii\web\View;
 <div class="container-fluid">
     <div class="row">
 
-        <div class="col-md-12" style="background-color: #fcfcfc;margin-bottom: 30px;">
-            <div class="aa">
-
+        <div class="col-md-12" style="background-color: #fdffff;">
+            <div class="aa" style="margin-bottom: 2%;margin-top: 2%;">
                 <div class="row">
-                    <div class="col-md-2" style="border: 1px solid rgba(0, 0, 0, 0.125);margin-top: 30px;margin-right: 4%;">
-
+                    <div class="col-md-2"
+                         style="border:5px #efefef solid;border-radius: 20px;margin-right: 4%;">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="title1 lefta" style="">
-                                    <h4>商品分类</h4>
+                                    <h5>宠物猫分类</h5>
                                     <P></P>
-                                    <hr>
-
                                 </div>
-                                <div class="title1"
-                                     style="margin-bottom: 0;padding: 5px;float: right">
+                                <div class="title1 more2"
+                                     style="margin-bottom: 0;float: right">
                                     <h5 style="margin-bottom: 0">
                                     <span style="">
-                                        <?= Html::a('更多 >>', ['/pets/search', 'category' => $ma->category], ['class' => 'more2']) ?>
+                                        <?= Html::a('更多 >>', ['/pets/category']) ?>
                                     </span>
                                     </h5>
                                 </div>
-
                             </div>
-                                <div class="col-md-12 col-12">
-<!--                                    <div class="card mb-3">-->
-                                        <div class="card-body" style="height: 40%;">
-                                            <div class="row">
+                        </div>
+                        <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
 
-                                            <?php foreach ($model4 as $m): ?>
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+                                <div class="row">
+                                    <?php foreach ($model4 as $m): ?>
 
-                                            <div class="col-md-6">
-<!--                                            <h5 class="card-title">--><?//= $m['category'] ?><!--</h5>-->
-                                            <p class="card-text kapian">
+                                        <div class="col-md-6">
+                                            <p class="kapian htitle">
                                                 <small class="text-muted">
-                                                    •
-                                                    <?= Html::a($m['category'], ['/pets/search', 'category' => $m->category]) ?>
+                                                    <svg t="1584090593713" class="icon" viewBox="0 0 1024 1024"
+                                                         version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="14004"
+                                                         width="23" height="23">
+                                                        <path d="M398.499 236.5l274.256 274.256-274.256 274.256z"
+                                                              p-id="14005" fill="#ffc78e"></path>
+                                                    </svg>
+                                                    <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
                                                 </small>
                                             </p>
-                                            </div>
-
-                                            <?php endforeach; ?>
-                                            </div>
-
                                         </div>
-<!--                                    </div>-->
+                                    <?php endforeach; ?>
+
                                 </div>
+                            </div>
                         </div>
-
-
                     </div>
 
-                    <div class="col-md-7" style="border: 1px solid rgba(0, 0, 0, 0.125);margin-top: 30px;margin-right: 4%;">
-
+                    <div class="col-md-7"
+                         style="border:5px #efefef solid;border-radius: 20px;margin-right: 4%;">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="title1 lefta" style="">
-                                    <h4>热销推荐</h4>
+                                    <h5>热销推荐</h5>
                                     <P></P>
                                 </div>
-                                <div class="title1"
+                                <div class="title1 more2"
                                      style="margin-bottom: 0;padding: 5px;float: right">
                                     <h5 style="margin-bottom: 0">
                                     <span style="">
-                                        <?= Html::a('更多 >>', ['/pets/search', 'category' => $ma->category], ['class' => 'more2']) ?>
+                                        <?= Html::a('更多 >>', ['/pets/category']) ?>
                                     </span>
                                     </h5>
                                 </div>
                             </div>
+
+                        </div>
+                        <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
+
+                        <div class="row">
                             <?php foreach ($model as $m): ?>
                                 <div class="col-md-4 col-12">
                                     <div class="card mb-3">
-                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                        <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
+                                            <img src="<?= $m['picture'] ?>" alt="" class="card-img-top ">
+                                        </a>
                                         <div class="card-body">
-                                            <h5 class="card-title">￥<?= $m['price'] ?></h5>
-                                            <p class="card-text kapian">
-                                                <small>
-                                                    <?= Html::a($m['name'], ['/pets/details', 'id' => $m->id]) ?>
-                                                </small>
-                                            </p>
-                                            <p class="card-text float-right">
-                                                <small class="text-muted">销售数量：<?= $m['sales'] ?></small>
-                                            </p>
+                                            <h5 class="card-title htitle">
+                                                <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
+                                            </h5>
+                                            <div class="card-text kapian">
+                                                ￥<?= $m['price'] ?>
+                                            </div>
+                                            <small class="text-muted card-text float-right">销售数量：<?= $m['sales'] ?></small>
                                         </div>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
-<!--                        <div class="col-12 text-center more">-->
-<!--                            --><?//= Html::a('查看更多>>', ['pets/category'], ['class' => 'btn btn-info']) ?>
-<!--                        </div>-->
                     </div>
 
-                    <div class="col-md-2" style="border: 1px solid rgba(0, 0, 0, 0.125);margin-top: 30px;">
+                    <div class="col-md-2" style="border:5px #efefef solid;border-radius: 20px;">
 
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="title1 lefta" style="">
-                                    <h4>商城公告</h4>
+                                    <h5>商城公告</h5>
                                     <P></P>
-                                    <hr>
-
                                 </div>
-                                <div class="title1"
+                                <div class="title1 more2"
                                      style="margin-bottom: 0;padding: 5px;float: right">
                                     <h5 style="margin-bottom: 0">
                                     <span style="">
-                                        <?= Html::a('更多 >>', ['/notices/notices'], ['class' => 'more2']) ?>
+                                        <?= Html::a('更多 >>', ['/notices/notices']) ?>
                                     </span>
                                     </h5>
                                 </div>
                             </div>
-                            <div class="col-md-12 col-12">
-<!--                                <div class="card mb-3">-->
-                                    <div class="card-body">
-                                        <?php foreach ($model3 as $m): ?>
-<!--                                        <div class="col-12 text-center more">-->
-
-                                        <p class="card-text kapian">
-                                                <small class="text-muted">
-                                                    <?= Html::a($m['content'], ['/pets/details', 'id' => $m->id]) ?>999
-                                                </small>
-                                            </p>
-<!--                                        </div>-->
-
-                                        <?php endforeach; ?>
-                                    </div>
-<!--                                </div>-->
-                            </div>
-
-
-
-
-
                         </div>
+                        <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
 
-
+                        <div class="row">
+                            <div class="col-md-12 col-12">
+                                <div class="">
+                                    <?php foreach ($model3 as $m): ?>
+                                        <p class="kapian htitle">
+                                            <svg t="1584090593713" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg" p-id="14004" width="23" height="23">
+                                                <path d="M398.499 236.5l274.256 274.256-274.256 274.256z" p-id="14005"
+                                                      fill="#ffc78e"></path>
+                                            </svg>
+                                            <small class="text-muted">
+                                                <?= Html::a($m['content'], ['/pets/details', 'id' => $m->id]) ?>
+                                            </small>
+                                        </p>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -215,19 +208,19 @@ use yii\web\View;
                     </div>
                     <div class="row">
                         <?php foreach ($model2 as $m) : ?>
-                            <div class="col-md-3 col-12">
-                                <div class="card mb-3">
-                                    <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                            <div class="col-md-3 col-12 x_bk">
+                                <div class="card mb-1">
+                                    <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
+                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                    </a>
                                     <div class="card-body">
-                                        <h5 class="card-title">￥<?= $m['price'] ?></h5>
-                                        <p class="card-text kapian">
-                                            <small>
-                                                <?= Html::a($m['name'], ['/pets/details', 'id' => $m->id]) ?>
-                                            </small>
-                                        </p>
-                                        <p class="card-text float-right">
-                                            <small class="text-muted">销售数量：<?= $m['sales'] ?></small>
-                                        </p>
+                                        <h5 class="card-title htitle">
+                                            <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
+                                        </h5>
+                                        <div class="card-text kapian">
+                                            ￥<?= $m['price'] ?>
+                                        </div>
+                                        <small class="text-muted card-text float-right">销售数量：<?= $m['sales'] ?></small>
                                     </div>
                                 </div>
                             </div>
@@ -252,19 +245,19 @@ use yii\web\View;
                     </div>
                     <div class="row">
                         <?php foreach ($model1 as $m) : ?>
-                            <div class="col-md-3 col-12">
-                                <div class="card mb-3">
-                                    <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                            <div class="col-md-3 col-12 x_bk2">
+                                <div class="card mb-1">
+                                    <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
+                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                    </a>
                                     <div class="card-body">
-                                        <h5 class="card-title">￥<?= $m['price'] ?></h5>
-                                        <p class="card-text kapian">
-                                            <small>
-                                                <?= Html::a($m['name'], ['/pets/details', 'id' => $m->id]) ?>
-                                            </small>
-                                        </p>
-                                        <p class="card-text float-right">
-                                            <small class="text-muted">销售数量：<?= $m['sales'] ?></small>
-                                        </p>
+                                        <h5 class="card-title htitle">
+                                            <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
+                                        </h5>
+                                        <div class="card-text kapian">
+                                            ￥<?= $m['price'] ?>
+                                        </div>
+                                        <small class="text-muted card-text float-right">销售数量：<?= $m['sales'] ?></small>
                                     </div>
                                 </div>
                             </div>
@@ -278,15 +271,14 @@ use yii\web\View;
         </div>
 
 
-
     </div>
 
 
 </div>
 
 
-<script src="../public/js/jquery-3.3.1.min.js"></script>
-<script src="../public/js/bootstrap.min.js"></script>
+<!--<script src="../public/js/jquery-3.3.1.min.js"></script>-->
+<!--<script src="../public/js/bootstrap.min.js"></script>-->
 </body>
 
 </html>

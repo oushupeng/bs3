@@ -33,6 +33,8 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
+        <?= Html::a('返回', ['index'],['class' => 'btn btn-success']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

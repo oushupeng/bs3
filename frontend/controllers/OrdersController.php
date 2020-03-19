@@ -13,19 +13,23 @@ use Yii;
 use yii\data\Pagination;
 use yii\db\Query;
 use yii\db\StaleObjectException;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 
 class OrdersController extends Controller
 {
+
     public function actionOrders()
     {
-        $query = OrdersDetails::find();
+        $query = Orders::find();
+        $username = Yii::$app->user->identity->username;
+
 
         $pagination = new Pagination([
             'defaultPageSize' => 10,
-            'totalCount' => $query->count(),
+            'totalCount' => $query->where(['deleted_at' => 0])->andWhere(['user_name' => $username])->count(),
         ]);
 
 //        $model = $query->orderBy(['created_at' => SORT_DESC])->offset($pagination->offset)->limit($pagination->limit)->all();
@@ -48,9 +52,10 @@ class OrdersController extends Controller
 
         $username = Yii::$app->user->identity->username;
         $model = OrdersDetails::find()
-            ->innerJoinWith(['order','name'])
+            ->innerJoinWith(['order', 'name'])
             ->orderBy(['orders.created_at' => SORT_DESC])
             ->where(['orders.user_name' => $username])
+            ->andWhere(['orders.deleted_at' => 0])
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
@@ -63,7 +68,7 @@ class OrdersController extends Controller
 //            ->limit($pagination->limit)
 //            ->all();
 
-        return $this->render('orders',['model' => $model, 'pagination' => $pagination]);
+        return $this->render('orders', ['model' => $model, 'pagination' => $pagination]);
     }
 
     public function actionOrdersDetails($id)
@@ -73,9 +78,15 @@ class OrdersController extends Controller
         $pet = Pets::find()->where(['id' => $model->pets_id])->one();
 //                var_dump($aa->id);die();
 
-        return $this->render('ordersDetails',['model' => $model, 'order' => $order, 'pet' => $pet]);
+        return $this->render('ordersDetails', ['model' => $model, 'order' => $order, 'pet' => $pet]);
     }
 
+    /**
+     * 创建订单
+     * @return Response
+     * @throws StaleObjectException
+     * @throws Throwable
+     */
     public function actionCreate()
     {
         $model = new Orders();
@@ -106,15 +117,15 @@ class OrdersController extends Controller
             //关联商品并更新
             $pets_id = $query->pets_id;
             $row = Pets::findOne($pets_id);
-            $row->stock = ($row->stock)-1;
-            $row->sales = ($row->sales)+1;
+            $row->stock = ($row->stock) - 1;
+            $row->sales = ($row->sales) + 1;
             $row->load(Yii::$app->request->post() && $row->save());
 
             //提交订单后删除在购物车里的商品
             $id = $_POST['id'];
             ShopCart::find()->where(['id' => $id])->one()->delete();
 
-            return $this->redirect(['orders', 'id' => $model->id]);
+            return $this->redirect(['orders-details', 'id' => $query->id]);
         }
 
 //        var_dump(123);die();
@@ -127,6 +138,10 @@ class OrdersController extends Controller
 
     }
 
+    /**
+     * 立即购买
+     * @return Response
+     */
     public function actionCreate2()
     {
 
@@ -140,10 +155,6 @@ class OrdersController extends Controller
         $model->user_id = $id;
 
         $model->status = '代付款';
-
-//        $aa = $_POST['amount'];
-//        var_dump($aa);die();
-
 
         //生成订单号，日期加随机五位数
         $osn = date('Ymd') . str_pad(mt_rand(1, 99999), 5, '0', STR_PAD_LEFT);
@@ -161,8 +172,8 @@ class OrdersController extends Controller
             //关联商品并更新
             $pets_id = $query->pets_id;
             $row = Pets::findOne($pets_id);
-            $row->stock = ($row->stock)-1;
-            $row->sales = ($row->sales)+1;
+            $row->stock = ($row->stock) - 1;
+            $row->sales = ($row->sales) + 1;
             $row->load(Yii::$app->request->post() && $row->save());
 
             return $this->redirect(['orders']);
@@ -186,18 +197,53 @@ class OrdersController extends Controller
     {
 
 //        Yii::$app->db->createCommand()->delete('orders', ['order_id' => $aa])->execute()
-        $model = OrdersDetails::findOne($id);
-        $aa = $model->order_id;
-        $bb = Orders::find()->select('id')->where(['order_id' => $aa])->one();
+        $model = $this->findModel($id);
 
+        if ($model) {
+            $aa = $model->order_id;
+            $bb = Orders::find()->where(['order_id' => $aa])->one();
+
+            $model->deleted_at = time();
+            $bb->deleted_at = time();
+//            var_dump(1);die();
+
+            if (!$model->load(Yii::$app->request->post()) && $model->save() && !$bb->load(Yii::$app->request->post()) && $bb->save()) {
+                Yii::$app->getSession()->setFlash('success','删除成功');
+                return $this->redirect(['orders/orders']);
+
+            }
+
+
+        }
         //订单详情关联订单删除
-        if ($this->findModel($id)->delete() && $bb->delete())
-
-        return $this->redirect(['orders/orders']);
+//        if ($this->findModel($id)->delete() && $bb->delete())
+//
+//        return $this->redirect(['orders/orders']);
 
     }
 
+    public function actionPay($id)
+    {
+        $model = $this->findModel($id);
 
+        if ($model) {
+            $bb = Orders::find()->where(['order_id' => $model->order_id])->one();
+            $bb->status = '代发货';
+
+            if (Yii::$app->request->post() && $bb->save()) {
+                Yii::$app->getSession()->setFlash('success','支付成功，订单进入代发货状态');
+                return $this->redirect(['orders-details', 'id' => $model->id]);
+            }
+        }
+    }
+
+
+
+    /**
+     * @param $id
+     * @return OrdersDetails|null
+     * @throws NotFoundHttpException
+     */
     public function findModel($id)
     {
         if (($model = OrdersDetails::findOne($id)) !== null) {

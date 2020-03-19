@@ -17,8 +17,8 @@ class SerachPets extends Pets
     public function rules()
     {
         return [
-            [['id', 'price', 'stock','sales', 'created_at', 'deleted_at'], 'integer'],
-            [['name', 'category', 'remark', 'picture', 'created_by'], 'safe'],
+            [['id', 'pets_id','price', 'stock','sales', 'created_at', 'deleted_at'], 'integer'],
+            [['name', 'category', 'content', 'picture', 'created_by'], 'safe'],
         ];
     }
 
@@ -48,7 +48,8 @@ class SerachPets extends Pets
             'query' => $query,
             'pagination' =>[
                 'pageSize' => '10',
-            ]
+            ],
+            'sort' => ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -61,17 +62,17 @@ class SerachPets extends Pets
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'pets_id' => $this->pets_id,
             'price' => $this->price,
             'stock' => $this->stock ,
             'sales' => $this->sales,
             'created_at' => $this->created_at,
-            'deleted_at' => $this->deleted_at,
+            'deleted_at' => 0,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'category', $this->category])
-            ->andFilterWhere(['like', 'remark', $this->remark])
+            ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'picture', $this->picture])
             ->andFilterWhere(['like', 'created_by', $this->created_by]);
 

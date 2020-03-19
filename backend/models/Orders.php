@@ -13,6 +13,7 @@ use Yii;
  * @property string $consignee 收货人
  * @property int $telephone 电话号码
  * @property string $address 收货地址
+ * @property string $remarks 订单备注
  * @property string $payment 付款方式，alipay：支付宝，wechat：微信
  * @property string $delivery 送货方式，mail：邮寄，cash-on-delivery：货到付款
  * @property string $status 订单状态，pay：代付款，send：代发货，receiving：待收货，evaluate：评价
@@ -42,7 +43,7 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             [['order_id', 'amount', 'telephone', 'express_id', 'courier_number', 'user_id', 'created_time', 'created_at', 'deleted_at'], 'integer'],
-            [['consignee', 'address', 'payment', 'delivery', 'status', 'user_name', 'created_by'], 'string', 'max' => 255],
+            [['consignee', 'address', 'remarks','payment', 'delivery', 'status', 'user_name', 'created_by'], 'string', 'max' => 255],
             ['consignee','required','message'=>'收货人必须填'],
             ['telephone','required','message'=>'电话号码必须填'],
             ['address','required','message'=>'收货地址必须填'],
@@ -57,11 +58,12 @@ class Orders extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'order_id' => '订单id',
+            'order_id' => '订单编号',
             'amount' => '总价',
             'consignee' => '收货人',
             'telephone' => '电话号码',
             'address' => '收货地址',
+            'remarks' => '订单备注',
             'payment' => '付款方式',
             'delivery' => '送货方式',
             'status' => '状态',

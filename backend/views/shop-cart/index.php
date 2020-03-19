@@ -19,14 +19,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-//            'id',
-//            'pets_id',
-            'pets_name',
-//            'user_id',
-            'user_name',
+            'pets_id',
+            'pets_category',
             'pets_num',
             'pets_price',
-            'created_by',
+            'user_name',
             'created_at:datetime',
 
             [
@@ -39,8 +36,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', '查看'),
                             'aria-label' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
+                            'class' => 'btn btn-primary btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                        return Html::a('查看', $url, $options);
                     },
                 ]
             ],

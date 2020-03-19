@@ -15,7 +15,7 @@ use yii\web\UploadedFile;
  * @property int $price 价格
  * @property int $stock 价格
  * @property int $sales 销量数量
- * @property string $remark 备注
+ * @property string $content 简介
  * @property string $picture 图片
  * @property string $created_by 创建人
  * @property int $created_at 创建时间
@@ -38,7 +38,8 @@ class Pets extends \yii\db\ActiveRecord
     {
         return [
             [['pets_id', 'price', 'sales', 'stock','created_at', 'deleted_at'], 'integer'],
-            [['name', 'category', 'remark', 'picture', 'created_by'], 'string', 'max' => 255],
+            [['name', 'category',  'picture', 'created_by'], 'string', 'max' => 255],
+            [['content'], 'string'],
             [['name'], 'required', 'message' => '宠物名称不能为空'],
             [['category'], 'required', 'message' => '宠物类别不能为空'],
             ['category', 'unique', 'message' => ' 已经添加了该类别的宠物'],
@@ -46,7 +47,7 @@ class Pets extends \yii\db\ActiveRecord
             ['pets_id', 'unique', 'message' => ' 已经有相同的宠物编号'],
             [['price'], 'required', 'message' => '宠物价格不能为空'],
             [['stock'], 'required', 'message' => '库存不能为空'],
-            [['remark'], 'required', 'message' => '备注不能为空'],
+            [['content'], 'required', 'message' => '简介不能为空'],
             [['imageFile'], 'required', 'message' => '图片不能为空'],
             [['imageFile'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
 
@@ -77,7 +78,7 @@ class Pets extends \yii\db\ActiveRecord
             'price' => '价格',
             'stock' => '库存',
             'sales' => '销量',
-            'remark' => '备注',
+            'content' => '简介',
             'picture' => '图片',
             'imageFile' => 'imageFile',
             'created_by' => '创建人',

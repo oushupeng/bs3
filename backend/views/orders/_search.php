@@ -15,15 +15,15 @@ use yii\widgets\ActiveForm;
         'method' => 'get',
     ]); ?>
 
-<!--    --><?//= $form->field($model, 'id') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'order_id') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'amount') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'consignee') ?>
-<!---->
-<!--    --><?//= $form->field($model, 'telephone') ?>
+    <!--    --><? //= $form->field($model, 'id') ?>
+    <!---->
+    <!--    --><? //= $form->field($model, 'order_id') ?>
+    <!---->
+    <!--    --><? //= $form->field($model, 'amount') ?>
+    <!---->
+    <!--    --><? //= $form->field($model, 'consignee') ?>
+    <!---->
+    <!--    --><? //= $form->field($model, 'telephone') ?>
 
     <?php // echo $form->field($model, 'address') ?>
 
@@ -50,22 +50,45 @@ use yii\widgets\ActiveForm;
     <?php // echo $form->field($model, 'deleted_at') ?>
 
 
-    <div class="col-md-2">
-        <?= $form->field($model, 'order_id')->label(false)->textInput(['class' => 'form-control ', 'style' => 'display: inline;', 'placeholder' => '请输出‘订单号’关键字']) ?>
+    <!--    <div class="col-md-2">-->
+    <!--        --><? //= $form->field($model, 'order_id')->label(false)->textInput(['class' => 'form-control ', 'style' => 'display: inline;', 'placeholder' => '请输出‘订单号’关键字']) ?>
+    <!--    </div>-->
+    <!--    <div class="col-md-2">-->
+    <!--        --><?php //echo $form->field($model, 'status')->label(false)->textInput(['class' => 'form-control ', 'style' => 'display: inline;', 'placeholder' => '请输出‘订单状态’关键字']) ?>
+    <!--    </div>-->
+    <!--    <div class="col-md-2">-->
+    <!--        --><?php //echo $form->field($model, 'created_by')->label(false)->textInput(['class' => 'form-control ', 'style' => 'display: inline;', 'placeholder' => '请输出‘下单用户’关键字']) ?>
+    <!--    </div>-->
+    <!--    <div class="col-md-3">-->
+    <!--        <div class="form-group">-->
+    <!--            --><? //= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+    <!--            --><? //= Html::resetButton('重置', ['class' => 'btn btn-outline-secondary']) ?>
+    <!--        </div>-->
+    <!--    </div>-->
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr class="info">
+                <th scope="col">
+                    订单编号：
+                    <?= Html::textInput('SerachOrders[order_id]', '', ['class' => 'form-control ', 'style' => 'width:70%;display: inline;']) ?>
+                </th>
+                <th scope="col">
+                    订单状态：
+                    <?= Html::textInput('SerachOrders[status]', '', ['class' => 'form-control ', 'style' => 'width:70%;display: inline;']) ?>
+                </th>
+                <th scope="col">
+                    创建用户：
+                    <?= Html::textInput('SerachOrders[created_by]', '', ['class' => 'form-control ', 'style' => 'width:70%;display: inline;']) ?>
+                </th>
+                <th scope="col">
+                    <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::resetButton('重置', ['class' => 'btn btn-outline-secondary']) ?>
+                </th>
+            </tr>
+            </thead>
+        </table>
     </div>
-    <div class="col-md-2">
-        <?php echo $form->field($model, 'status')->label(false)->textInput(['class' => 'form-control ', 'style' => 'display: inline;', 'placeholder' => '请输出‘订单状态’关键字']) ?>
-    </div>
-    <div class="col-md-2">
-        <?php echo $form->field($model, 'created_by')->label(false)->textInput(['class' => 'form-control ', 'style' => 'display: inline;', 'placeholder' => '请输出‘下单用户’关键字']) ?>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>
-            <?= Html::resetButton('重置', ['class' => 'btn btn-outline-secondary']) ?>
-        </div>
-    </div>
-
     <?php ActiveForm::end(); ?>
 
 </div>

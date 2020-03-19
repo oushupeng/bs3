@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <a href="">
-                    <img class="d-block w-100 picture" src="../views/public/image/c9.jpg" alt="First slide">
+                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>First slide label</h5>
                         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -33,26 +33,28 @@ use yii\widgets\ActiveForm;
     </div>
 </div>
 
+<div class="container-fluid pt">
 <div class="container">
     <div class="row">
 
-        <div class="col-md-10">
-            <div class="row" style="border: 1px solid #efefef;margin-top: 10px;">
+        <div class="col-md-9" style=";margin-top: 5%;margin-right: %;">
+            <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
+
+            <div class="row" >
                 <div class="col-md-6" style="background-color: ;">
-                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture" alt="Responsive image">
+                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2 " alt="Responsive image">
                 </div>
                 <div class="col-md-6">
-                    <div class="detailsTitle" style="">
+                    <div class="detailsTitle2" style="">
                         <?php $form = ActiveForm::begin(['action' => ['pets/create'], 'method' => 'post']) ?>
-
                         <h5>
-                            <?= $model->name ?>
+                            <?= $model->category ?>
                         </h5>
                         <p></p>
                         <table class="table table-striped ">
                             <tbody>
                             <tr>
-                                <td>商品id</td>
+                                <td>宠物编号：</td>
                                 <td>
                                     <?= Html::textInput('id', $model->id, ['class' => 'hidden']) ?>
 
@@ -61,34 +63,29 @@ use yii\widgets\ActiveForm;
                                     <?= $model->id ?>
                                 </td>
                             </tr>
-                            <!--                            <tr>-->
-                            <!--                                <td>商品名称</td>-->
-                            <!--                                <td>-->
-                            <!--                                    --><? //= Html::textInput('ShopCart[pets_name]', $model->name, ['class' => 'hidden']) ?>
-                            <!--                                    --><? //= $model->name ?>
-                            <!--                                </td>-->
-                            <!--                            </tr>-->
                             <tr>
-                                <td>商品类别</td>
+                                <td>商品类别：</td>
                                 <td>
                                     <?= $model->category ?>
+                                    <?= Html::textInput('ShopCart[pets_category]', $model->category, ['class' => 'hidden']) ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td>商品价格</td>
+                                <td>商品价格：</td>
                                 <td>
                                     <?= Html::textInput('ShopCart[pets_price]', $model->price, ['class' => 'details hidden']) ?>
+                                    <?= Html::textInput('ShopCart[sum]', $model->price, ['class' => 'details hidden']) ?>
                                     <?= $model->price ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td>销售数量</td>
+                                <td>销售数量：</td>
                                 <td>
                                     <?= $model->sales ?>
                                 </td>
                             </tr>
                             <tr>
-                                <td>剩余库存</td>
+                                <td>剩余库存：</td>
                                 <td>
                                     <?= $model->sales ?>
                                 </td>
@@ -126,63 +123,67 @@ use yii\widgets\ActiveForm;
                                     <thead>
                                     <tr>
                                         <td>宠物毛长：First Name</td>
-                                        <td>品种：Username</td>
+                                        <td>驱虫情况：Larry</td>
                                         <td>性别：Jacob</td>
                                         <td>年龄：@fat</td>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>驱虫情况：Larry</td>
-                                        <td>产地：twitter</td>
-                                        <td>剩余数量：Mark</td>
-                                        <td>销售数量：mdo</td>
+                                        <td>品种：<?= $model->category ?></td>
+                                        <td>上架时间：<?= date('Y-m-d', $model->created_at) ?></td>
+                                        <td>剩余数量：<?= $model->stock ?></td>
+                                        <td>销售数量：<?= $model->sales ?></td>
                                     </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
-                                <p>最新公告</p>
-                                <hr/>
-                                <p class="suojin">
-                                    所售猫咪均为自家猫舍繁殖，保证猫咪健康 血统纯正。出售的猫咪均已注射过疫苗，驱虫，请放心购买，我们一定做到让您买的放心，养得开心！！</p>
 
-                                <p class="suojin">
-                                    售后服务保障与销售保证：
-                                </p>
-
-                                <p class="suojin">1.可以与您签订活体销售协议来保证购买宝宝的健康和纯种。</p>
-
-                                <p class="suojin">2.出售的每只宝宝都有自己的健康证书，内容包括：生日、疫苗注射情况。</p>
-
-                                <p class="suojin">3.24小时开通售后服务热线以解答您饲养中的不懂难题。</p>
-
-                                <p class="suojin">4.售出7日内发生任何疫苗范围内的传染性疾病可为您更换，保证宝宝在您身边健康快乐的成长。 </p>
-
-
-                                <div style="margin: 40px;">
-                                    <img src="<?= $model->picture ?>" class="img-fluid" style="height: 500px;">
-
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="row" style="margin: 2%">
+            <div>
+                <p>最新公告</p>
+<!--                <hr/>-->
+                <p class="suojin">
+                    所售猫咪均为自家猫舍繁殖，保证猫咪健康 血统纯正。出售的猫咪均已注射过疫苗，驱虫，请放心购买，我们一定做到让您买的放心，养得开心！！</p>
+
+                <p class="suojin">
+                    售后服务保障与销售保证：
+                </p>
+
+                <p class="suojin">1.可以与您签订活体销售协议来保证购买宝宝的健康和纯种。</p>
+
+                <p class="suojin">2.出售的每只宝宝都有自己的健康证书，内容包括：生日、疫苗注射情况。</p>
+
+                <p class="suojin">3.24小时开通售后服务热线以解答您饲养中的不懂难题。</p>
+
+                <p class="suojin">4.售出7日内发生任何疫苗范围内的传染性疾病可为您更换，保证宝宝在您身边健康快乐的成长。 </p>
+
+
+                <div style="margin: 40px;">
+                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2" style="height: 500px;">
+                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2" style="height: 500px;">
+
+                </div>
+            </div>
+            </div>
         </div>
 
 
-        <div class="col-md-2" style="border: 1px solid #efefef;margin-top: 10px;">
+        <div class="col-md-3" style="border:5px #efefef solid;border-radius: 20px;margin-top: 5%;padding-left: 2%;padding-right: 2%">
             <div class="col-md-12">
                 <div class="title1" style="">
-                    <h4>掌柜推荐</h4>
+                    <h5>掌柜推荐</h5>
                     <p>人气热买！！！</p>
                 </div>
             </div>
 
             <div class="row">
                 <?php
-                $aa = Pets::find()->where(['>', 'stock', '0'])->limit(8)->all();
+                $aa = Pets::find()->where(['>', 'stock', '0'])->limit(6)->all();
                 ?>
                 <?php foreach ($aa as $m) : ?>
                     <div class="col-md-12 col-12">
@@ -199,7 +200,7 @@ use yii\widgets\ActiveForm;
 <!--                                <h5 class="card-title">￥--><?//= $m['price'] ?><!--</h5>-->
                                 <p class="card-text kapian">
                                     <small>
-                                        <?= Html::a($m['name'], ['/pets/details', 'id' => $m->id]) ?>
+                                        <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
                                     </small>
                                 </p>
 <!--                                <p class="card-text float-right">-->
@@ -215,23 +216,6 @@ use yii\widgets\ActiveForm;
 
     </div>
 </div>
-<div class="container-fluid ph1">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="col-md-12">
-                <div class="text-center title" style="">
-                    <h2>关于我们</h2>
-                    <p>我们提供早餐、午餐、晚餐、宵夜</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12 text-center more">
-            <a href="#" class="btn btn-primary">更多</a>
-        </div>
-    </div>
 </div>
 </body>
 

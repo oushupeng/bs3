@@ -2,6 +2,8 @@
 
 namespace backend\controllers;
 
+use backend\models\OrdersDetails;
+use backend\models\Pets;
 use Yii;
 use backend\models\Orders;
 use backend\models\SerachOrders;
@@ -62,10 +64,12 @@ class OrdersController extends Controller
      */
     public function actionIndex()
     {
+        $model = Orders::find()->all();
         $searchModel = new SerachOrders();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'model' => $model,
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -79,8 +83,15 @@ class OrdersController extends Controller
      */
     public function actionView($id)
     {
+
+        $model = $this->findModel($id);
+        $orderDetails = OrdersDetails::find()->where(['order_id' => $model->order_id])->one();
+        $pet = Pets::find()->where(['id' => $orderDetails->pets_id])->one();
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'orderDetails' => $orderDetails,
+            'pet' => $pet
         ]);
     }
 
@@ -122,6 +133,7 @@ class OrdersController extends Controller
     {
         $model = $this->findModel($id);
 
+        $model->status = '待收货';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }

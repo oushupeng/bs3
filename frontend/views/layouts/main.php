@@ -13,6 +13,7 @@ use frontend\assets\AppAsset;
 use common\widgets\Alert;
 
 AppAsset::register($this);
+$this->title = '宠物猫商城';
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>

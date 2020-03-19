@@ -11,7 +11,7 @@ use Yii;
  * @property int $pets_id 商品id
  * @property int $user_id 用户id
  * @property string $user_name 用户名称
- * @property string $pets_name 用户名称
+ * @property string $pets_category 宠物类别
  * @property int $pets_num 商品数量
  * @property int $pets_price 商品价格
  * @property int $sum 商品总价
@@ -36,7 +36,7 @@ class ShopCart extends \yii\db\ActiveRecord
     {
         return [
             [['pets_id', 'user_id', 'pets_num', 'pets_price', 'sum','created_at', 'deleted_at'], 'integer'],
-            [['user_name','pets_name','created_by'], 'string', 'max' => 255],
+            [['user_name','pets_category','pets_category','created_by'], 'string', 'max' => 255],
         ];
     }
 
@@ -47,16 +47,21 @@ class ShopCart extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'pets_id' => '宠物id',
-            'pets_name' => '宠物名称',
+            'pets_id' => '宠物编号',
+            'pets_category' => '宠物类别',
             'user_id' => '用户id',
             'user_name' => '用户名称',
             'pets_num' => '宠物数量',
             'pets_price' => '宠物价格',
             'sum' => '总钱',
-            'created_by' => '创建人',
+            'created_by' => '用户名',
             'created_at' => '创建时间',
             'deleted_at' => '删除时间',
         ];
+    }
+
+    public function getPet()
+    {
+        return $this->hasOne(Pets::className(),['id' => 'pets_id']);
     }
 }

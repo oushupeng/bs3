@@ -2,6 +2,7 @@
 
 namespace backend\controllers;
 
+use backend\models\Notice;
 use Yii;
 use backend\models\Notices;
 use backend\models\SerachNotices;
@@ -135,9 +136,21 @@ class NoticesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->deleted_at = time();
+        if (Yii::$app->request->post() && $model->save()) {
+            Yii::$app->getSession()->setFlash('success','删除成功');
+            return $this->redirect(['index']);
+        }
+    }
 
-        return $this->redirect(['index']);
+    /**
+     * 批量软删除
+     * @return int
+     */
+    public function actionDeleteAll()
+    {
+        return Notices::updateAll(['deleted_at' => time()], ['id' => Yii::$app->request->post('arr_id')]);
     }
 
     /**

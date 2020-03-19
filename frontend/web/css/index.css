@@ -12,7 +12,11 @@ body {
 }
 
 footer {
-    margin-top: 100px;
+    /*margin-top: 100px;*/
+}
+
+.pt {
+    padding-bottom: 10%;
 }
 
 .a1 {
@@ -56,12 +60,20 @@ footer {
     /*background-color: red;*/
 }
 
-/** 详情的图片 */
+/** 详情的图片 排行 */
 .detailsPicture {
-    margin: 20px 0px 20px 10px;
-    height: 430px;
+    margin: 20px 0px 20px 0px;
+    height: 350px;
+    border-radius: 5px;
     /*background-color: red;*/
-
+}
+.detailsPicture2 {
+    margin: 0px 0px 20px 10px;
+    height: 380px;
+    /*background-color: red;*/
+}
+.indeximage {
+    border-radius: 5px;
 }
 
 .title {
@@ -70,12 +82,17 @@ footer {
 }
 
 .title1 {
-    margin-top: 40px;
+    margin-top: 20px;
     /*margin-bottom: 40px;*/
 }
 
 .detailsTitle {
-    margin-top: 50px;
+    margin-top: 30px;
+    /*margin-right: 30px;*/
+}
+
+.detailsTitle2 {
+    margin-top: 25px;
     /*margin-right: 30px;*/
 }
 
@@ -89,10 +106,26 @@ footer {
     color: #444;
 }
 
-.more2 {
+.more2 a{
     text-decoration: none;
-    font-size: 15px;
+    font-size: 13px;
 }
+
+.htitle a{
+    text-decoration: none;
+    color: black;
+}
+
+.htitle a:hover{
+    text-decoration: none;
+    color: #007bff;
+}
+
+
+.hctitle a{
+    text-decoration: none;
+}
+
 
 .lefta {
     float: left;
@@ -158,4 +191,46 @@ div#w1-error-0 {
 }
 div#w0-error-0 {
     opacity: 1;
+}
+
+.a_bk {
+    padding: 5px;
+    /*margin-bottom: 10px;*/
+    border:7px solid white;
+}
+
+.a_bk:hover {
+    border:7px solid  #1796f9;
+    border-radius:5px;
+    box-sizing: border-box;
+    /*这样才能使鼠标放上去的时候显示全部的蓝色框,否则因为maring的缘故，边框的右半部分会被相邻的a的边框遮盖 */
+    z-index: 10;
+}
+
+.x_bk {
+    padding: 5px;
+    /*margin-bottom: 10px;*/
+    border:7px solid #ecf5ff;
+}
+
+.x_bk:hover {
+    border:7px solid  #1796f9;
+    border-radius:5px;
+    box-sizing: border-box;
+    /*这样才能使鼠标放上去的时候显示全部的蓝色框,否则因为maring的缘故，边框的右半部分会被相邻的a的边框遮盖 */
+    z-index: 10;
+}
+
+.x_bk2 {
+    padding: 5px;
+    /*margin-bottom: 10px;*/
+    border:7px solid #efefef;
+}
+
+.x_bk2:hover {
+    border:7px solid  #1796f9;
+    border-radius:5px;
+    box-sizing: border-box;
+    /*这样才能使鼠标放上去的时候显示全部的蓝色框,否则因为maring的缘故，边框的右半部分会被相邻的a的边框遮盖 */
+    z-index: 10;
 }

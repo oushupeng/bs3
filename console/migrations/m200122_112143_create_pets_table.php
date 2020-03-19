@@ -26,7 +26,7 @@ class m200122_112143_create_pets_table extends Migration
             'price' => $this->integer()->defaultValue(0)->notNull()->comment('价格'),
             'stock' => $this->integer()->defaultValue(0)->notNull()->comment('库存'),
             'sales' => $this->integer()->defaultValue(0)->notNull()->comment('销量数量'),
-            'remark' => $this->string()->defaultValue('')->notNull()->comment('备注'),
+            'content' => $this->text()->notNull()->comment('简介'),
             'picture' => $this->string()->defaultValue('')->notNull()->comment('图片'),
             'imageFile' => $this->string()->defaultValue('')->notNull()->comment('图片2'),
 

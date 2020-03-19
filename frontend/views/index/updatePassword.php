@@ -38,35 +38,37 @@ $email = Yii::$app->user->identity->email;
     </div>
 </div>
 
-<div class="container-fluid ph1">
-    <div class="row">
-        <div class="col-md-12">
+<div class="container-fluid ph1 pt">
+    <div class="container">
+        <div class="row">
             <div class="col-md-12">
-                <div class=" title" style="">
-                    <?php $form = ActiveForm::begin() ?>
+                <div class="col-md-12">
+                    <div class=" title" style="">
+                        <?php $form = ActiveForm::begin() ?>
 
-                    <div class="form-group">
-                        <label for="inputAddress">旧密码</label>
-                        <?= $form->field($model, 'oldPassword')->passwordInput()->label('密码')->label(false) ?>
+                        <div class="form-group">
+                            <label for="inputAddress">旧密码</label>
+                            <?= $form->field($model, 'oldPassword')->passwordInput()->label('密码')->label(false) ?>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress2">新密码</label>
+                            <?= $form->field($model, 'newPassword')->passwordInput()->label('密码')->label(false) ?>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress2">确认新密码</label>
+                            <?= $form->field($model, 'repeatNewPassword')->passwordInput()->label('密码')->label(false) ?>
+
+                        </div>
+
+                        <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::a('返回', ['/index/personal'], ['class' => 'btn btn-primary']) ?>
+
+                        <?php ActiveForm::end() ?>
 
                     </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">新密码</label>
-                        <?= $form->field($model, 'newPassword')->passwordInput()->label('密码')->label(false) ?>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress2">确认新密码</label>
-                        <?= $form->field($model, 'repeatNewPassword')->passwordInput()->label('密码')->label(false) ?>
-
-                    </div>
-
-                    <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
-                    <?= Html::resetButton('重置', ['class' => 'btn btn-primary']) ?>
-                    <?= Html::a('返回', ['/index/personal'], ['class' => 'btn btn-primary']) ?>
-
-                    <?php ActiveForm::end() ?>
-
                 </div>
             </div>
         </div>

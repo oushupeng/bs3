@@ -1,19 +1,23 @@
 <?php
 
+use common\models\User;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\User */
 
-$this->title = '用户信息：'.$model->username;
+$this->title = '用户名：'.$model->username;
 $this->params['breadcrumbs'][] = ['label' => '用户管理', 'url' => ['index']];
-$this->params['breadcrumbs'][] = '用户名：'.$this->title;
+$this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
 <div class="user-view">
 
 
+    <p>
+        <?= Html::a('返回', ['index'], ['class' => 'btn btn-success']) ?>
+    </p>
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
@@ -26,7 +30,16 @@ $this->params['breadcrumbs'][] = '用户名：'.$this->title;
                 }
             ],
             'email:email',
-            'status',
+            [
+                'attribute' => 'status',
+                'value' => function($model){
+                    if ($model->status === User::STATUS_ACTIVE){
+                        return '已激活';
+                    }
+                    return '未激活';
+                },
+                'footerOptions' => ['class'=>'hide']
+            ],
             'last_login_time:datetime',
             'created_at:datetime',
             'updated_at:datetime',

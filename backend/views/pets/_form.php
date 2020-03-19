@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'stock')->textInput()->label('库存') ?>
 
-    <?= $form->field($model, 'remark')->textInput(['maxlength' => true])->label('备注') ?>
+    <?= $form->field($model, 'content')->textarea(['rows' => 9])->label('简介') ?>
 
     <?= $form->field($model, 'imageFile')->fileInput(['onchange' => 'xmTanUploadImg(this)'])->label('上传图片') ?>
 
@@ -33,6 +33,9 @@ use yii\widgets\ActiveForm;
 
     <div class="form-group">
         <?= Html::submitButton('保存', ['class' => 'btn btn-success']) ?>
+        <?= Html::resetButton('重置', ['class' => 'btn btn-success']) ?>
+        <?= Html::a('返回', ['index'], ['class' => 'btn btn-success']) ?>
+
     </div>
 
     <?php ActiveForm::end(); ?>

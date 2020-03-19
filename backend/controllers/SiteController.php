@@ -2,6 +2,7 @@
 namespace backend\controllers;
 
 use common\models\LoginFormAdmin;
+use mdm\admin\models\searchs\Menu;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -23,6 +24,14 @@ class SiteController extends Controller
                 'rules' => [
                     [
                         'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['search', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['index2', 'error'],
                         'allow' => true,
                     ],
                     [
@@ -63,6 +72,11 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
+    public function actionIndex2()
+    {
+        return $this->render('index');
+    }
+
     /**
      * Login action.
      *
@@ -98,5 +112,14 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionSearch()
+    {
+        $query = Menu::find();
+        $q = $_POST['q'];
+        $model = $query->where(['name' => $q])->all();
+        return $this->goBack(['model' => $model]);
+
     }
 }

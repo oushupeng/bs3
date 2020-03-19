@@ -95,7 +95,7 @@ class KnowledgesController extends Controller
             $file_path = $model->upload();
 
             if ($file_path !== false) {
-                $model->image = '/bs3/backend/web/'.$file_path ;
+                $model->image = '/bs3/backend/web/' . $file_path;
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
@@ -123,7 +123,7 @@ class KnowledgesController extends Controller
             $file_path = $model->upload();
 
             if ($file_path !== false) {
-                $model->image = '/bs3/backend/web/'.$file_path ;
+                $model->image = '/bs3/backend/web/' . $file_path;
                 if ($model->save()) {
                     return $this->redirect(['view', 'id' => $model->id]);
                 }
@@ -149,9 +149,20 @@ class KnowledgesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->deleted_at = time();
+        if ($model->save()) {
+            Yii::$app->getSession()->setFlash('success', '删除成功');
+            return $this->redirect(['index']);
+        }
+    }
 
-        return $this->redirect(['index']);
+    /**
+     * @return int
+     */
+    public function actionDeleteAll()
+    {
+        return Knowledges::updateAll(['deleted_at' => time()], ['id' => Yii::$app->request->post('arr_id')]);
     }
 
     /**

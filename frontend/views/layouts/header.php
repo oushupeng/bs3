@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 $username = Yii::$app->user->identity->username;
@@ -45,7 +46,7 @@ $username = Yii::$app->user->identity->username;
                         <div class="col-md-12 offset-md-1">
                             <?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                             <?= Html::a('注册', ['/site/signup'], ['class' => 'btn btn-primary']) ?>
-                            <?= Html::resetButton('重置', ['class'=>'btn btn-primary','name' =>'submit-button']) ?>
+                            <?= Html::resetButton('重置', ['class' => 'btn btn-primary', 'name' => 'submit-button']) ?>
                             <?= Html::a('忘记密码', ['site/request-password-reset'], ['class' => 'btn btn-primary']) ?>
                         </div>
                     </div>
@@ -57,25 +58,36 @@ $username = Yii::$app->user->identity->username;
 </div>
 <?php ActiveForm::end(); ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light aa a1">
+<nav class="navbar navbar-expand-lg navbar-light bg-light aa" style="font-size: 12px;padding-top: 0;padding-bottom: 0">
     <a class="navbar-brand" href="#"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <!--                <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>-->
+            <?= Html::a('首页', ['/index/index'], ['class' => 'nav-link']) ?>
+
+        </li>
+    </ul>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mynav1"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <div class="navbar-collapse collapse" id="mynav1">
+<!--    <div class="collapse navbar-collapse" id="mynav1">-->
+<!--        <ul class="navbar-nav mr-auto">-->
+<!--            <li class="nav-item active">-->
+<!--                                <a class="nav-link" href="#">首页 <span class="sr-only">(current)</span></a>-->
+<!--                --><?//= Html::a('首页', ['/index/index'], ['class' => 'nav-link']) ?>
+<!---->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+    <div class="navbar-collapse collapse" id="mynav1">
             <ul class="navbar-nav ml-auto">
                 <?php if (Yii::$app->user->isGuest) { ?>
                     <li class="nav-item">
                         <!--                            'data-target' => '#mymodal' , 'data-toggle' => 'modal'-->
-                        <?= Html::a('登录', ['/site/login'],['class' => 'nav-link', ]) ?>
+                        <?= Html::a('登录', ['/site/login'], ['class' => 'nav-link',]) ?>
                     </li>
                     <!--                        <li class="nav-item"><a href="" class="nav-link " data-toggle="modal" data-target="#mymodal">登录</a></li>-->
                 <? } else { ?>
@@ -99,7 +111,6 @@ $username = Yii::$app->user->identity->username;
                 <!--                    <li class="nav-item"><a href="" class="nav-link">客服</a></li>-->
             </ul>
         </div>
-    </div>
 </nav>
 
 <!--<nav class="navbar navbar-expand-lg navbar-dark bg-dark aa sticky-top" style="height: 80px;">-->
@@ -124,7 +135,7 @@ $username = Yii::$app->user->identity->username;
 <!--            <select class="custom-select" name="category" style="width: 250px;float:left;margin-right: 10px;">-->
 <!--                <option selected value="">请选择猫的类别</option>-->
 <!--                --><?php //foreach ($aa as $a): ?>
-<!--                    <option value="--><?//=$a->category?><!--">--><?//=$a->category?><!--</option>-->
+<!--                    <option value="--><? //=$a->category?><!--">--><? //=$a->category?><!--</option>-->
 <!--                --><?php //endforeach; ?>
 <!--                                    <option value="布偶猫">布偶猫</option>-->
 <!--                                    <option value="加菲猫">加菲猫</option>-->
@@ -151,12 +162,14 @@ $username = Yii::$app->user->identity->username;
 <!--</nav>-->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top aa">
-<!--    <a class="navbar-brand" href="#">xxx</a>-->
-    <a class="navbar-brand" href="index.html">
-        <img src="/bs3/frontend/views/public/image/a1.jpg" width="30" height="30" class="d-inline-block align-top header"
+    <!--    <a class="navbar-brand" href="#">xxx</a>-->
+    <a class="navbar-brand" href="<?= Url::to(['index/index']) ?>">
+
+        <img src="/bs3/frontend/views/public/image/a1.jpg" width="30" height="30"
+             class="d-inline-block align-top header"
              alt="">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tabs_nav"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -170,33 +183,8 @@ $username = Yii::$app->user->identity->username;
                 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <!--                    <a class="nav-link dropdown-toggle" href="category.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                <!--                    --><? //= Html::a('宠物猫品种', ['pets/category'], ['class' => 'nav-link dropdown-toggle']) ?>
-
                 <?= Html::a('宠物猫品种', ['pets/category'], ['class' => 'nav-link']) ?>
-
-
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">布偶猫</a>
-                    <a class="dropdown-item" href="#">加菲猫</a>
-                    <a class="dropdown-item" href="#">折耳猫</a>
-                    <a class="dropdown-item" href="#">波斯猫</a>
-                    <a class="dropdown-item" href="#">暹罗猫</a>
-                    <a class="dropdown-item" href="#">孟买猫</a>
-                    <a class="dropdown-item" href="#">金吉拉猫</a>
-                    <a class="dropdown-item" href="#">美国短毛猫</a>
-                    <a class="dropdown-item" href="#">英国短毛猫</a>
-                    <a class="dropdown-item" href="#">挪威森林猫</a>
-                    <a class="dropdown-item" href="#">中国狸花猫</a>
-                    <a class="dropdown-item" href="#">加菲猫</a>
-
-                    <!-- <div class="dropdown-divider"></div> -->
-                    <!-- <a class="dropdown-item" href="#">Something else here</a> -->
-                </div>
             </li>
-            <!--                <li class="nav-item">-->
-            <!--                    <a class="nav-link" href="#">宠物猫价格</a>-->
-            <!--                </li>-->
             <li class="nav-item">
                 <?= Html::a('销售排行', ['pets/ranking'], ['class' => 'nav-link']) ?>
             </li>
@@ -209,36 +197,28 @@ $username = Yii::$app->user->identity->username;
 
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">养猫指南</a>
-            </li>
-            <li class="nav-item">
-<!--                <a class="nav-link" href="#">猫咪知识</a>-->
                 <?= Html::a('猫咪知识', ['knowledges/knowledges'], ['class' => 'nav-link']) ?>
 
             </li>
             <li class="nav-item">
-                <!--                    <a class="nav-link disabled" href="Index/about">关于我们</a>-->
                 <?= Html::a('关于我们', ['about/about'], ['class' => 'nav-link']) ?>
-
             </li>
         </ul>
 
         <?php $form = ActiveForm::begin(['action' => ['pets/search'], 'method' => 'get']) ?>
 
         <?php
-        $aa=\backend\models\Pets::find()->all();
+        $aa = \backend\models\Pets::find()->all();
         ?>
         <select class="custom-select" name="category" style="width: 250px;float:left;margin-right: 10px;">
             <option selected value="">请选择猫的类别</option>
             <?php foreach ($aa as $a): ?>
-                <option value="<?=$a->category?>"><?=$a->category?></option>
+                <option value="<?= $a->category ?>"><?= $a->category ?></option>
             <?php endforeach; ?>
 
         </select>
-
-<!--        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"-->
-<!--               style="width: 400px;float: left" name="name">-->
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success  my-sm-0" type="submit">搜索</button>
+<!--        --><?//= Html::submitButton('搜索',['class' => 'btn btn-success '])?>
 
         <?php ActiveForm::end() ?>
     </div>

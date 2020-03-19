@@ -70,9 +70,10 @@ class PetsController extends Controller
 
             $model->pets_num = 1;
 
+
             //获取id
             $aa = $_POST['id'];
-            $query = ShopCart::find()->where(['pets_id' => $aa])->one();
+            $query = ShopCart::find()->where(['pets_id' => $aa])->andWhere(['created_by' => $username])->one();
 
             if (!$query){
                 if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -82,7 +83,7 @@ class PetsController extends Controller
 
             }else {
                 $query->updateCounters(['pets_num' => 1]);
-                Yii::$app->getSession()->setFlash('success','已经加入购物车');
+                Yii::$app->getSession()->setFlash('success','已经存在购物车中了');
                 return $this->redirect(['pets/details','id' => $query->pets_id]);
             }
 
@@ -114,7 +115,8 @@ class PetsController extends Controller
     {
         $query = Pets::find();
         $model = $query->orderBy(['sales' => SORT_DESC])->all();
-        return $this->render('ranking', ['model' => $model]);
+        $modell = $query->limit(24)->all();
+        return $this->render('ranking', ['model' => $model, 'modell' => $modell]);
     }
 
     /**
@@ -124,7 +126,7 @@ class PetsController extends Controller
     public function actionNewsUpperShelf()
     {
         $query = Pets::find();
-        $model = $query->orderBy(['created_at' => SORT_DESC])->limit(10)->all();
+        $model = $query->orderBy(['created_at' => SORT_DESC])->limit(12)->all();
         return $this->render('newsUpperShelf', ['model' => $model]);
     }
 

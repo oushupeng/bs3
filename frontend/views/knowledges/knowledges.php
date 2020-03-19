@@ -33,18 +33,19 @@ use yii\helpers\Html; ?>
     </div>
 </div>
 
-<div class="container">
+<div class="container-fluid pt" style="background-color: #fff3ee">
+    <div class="container">
     <div class="row">
         <div class="col-md-12">
             <div class="text-center title" style="">
                 <h2>猫咪知识 </h2>
-                <p>最新十条公告信息。。。</p>
+                <p>介绍关于宠物猫的知识。。。</p>
             </div>
+            <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
+
         </div>
-        <div class="col-md-12">
-            <hr/>
-        </div>
-        <div class="col-md-12">
+
+        <div class="col-md-12" style="border:5px #efefef solid;border-radius: 20px;padding: 2%;margin-top: 2%">
             <div class="row">
                 <?php foreach ($model as $m) : ?>
                     <div class="col-md-3" >
@@ -53,9 +54,9 @@ use yii\helpers\Html; ?>
                         </div>
                     </div>
                     <div class="col-md-9" style="height: 160px;">
-                        <h2 class="kapian3">
+                        <h3 class="kapian3 htitle">
                             <?= Html::a($m->title,['add', 'id' => $m->id], ['data' => ['method' => 'post']]) ?>
-                        </h2>
+                        </h3>
                             <p class="kapian2"><?= $m->content ?></p>
                         <svg t="1583228820289" class="icon" viewBox="0 0 1024 1024" p-id="2290" width="16" height="16">
                             <path d="M512 128C300.256 128 128 300.256 128 512s172.256 384 384 384 384-172.256 384-384S723.744 128 512 128z m0 64c177.12 0 320 142.88
@@ -75,7 +76,7 @@ use yii\helpers\Html; ?>
                         </svg>
                         <small><?= $m->views ?></small>
                     </div>
-                    <div class="col-md-12" style="margin-top: -1%">
+                    <div class="col-md-12" style="margin-top: -1.5%">
                         <hr/>
                     </div>
                 <?php endforeach; ?>
@@ -83,6 +84,7 @@ use yii\helpers\Html; ?>
             </div>
         </div>
 
+    </div>
     </div>
 </div>
 </body>

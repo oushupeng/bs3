@@ -21,7 +21,7 @@ class m200126_163127_create_shop_cart_table extends Migration
         $this->createTable('{{%shop_cart}}', [
             'id' => $this->primaryKey(),
             'pets_id' => $this->integer()->defaultValue(0)->notNull()->comment('商品id'),
-            'pets_name' => $this->string()->defaultValue('')->notNull()->comment('商品名称'),
+            'pets_category' => $this->string()->defaultValue('')->notNull()->comment('类别'),
             'user_id' => $this->integer()->defaultValue(0)->notNull()->comment('用户id'),
             'user_name' => $this->string()->defaultValue('')->notNull()->comment('用户名称'),
             'pets_num' => $this->integer()->defaultValue(0)->notNull()->comment('商品数量'),

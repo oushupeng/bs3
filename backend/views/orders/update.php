@@ -5,14 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\Orders */
 
-$this->title = '更新订单: ' . $model->id;
+$this->title = '填写快递单号: ' . $model->order_id;
 $this->params['breadcrumbs'][] = ['label' => 'orders', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = ['label' => $model->order_id, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = '执行操作';
 ?>
 <div class="orders-update">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <?= $this->render('_form', [
         'model' => $model,

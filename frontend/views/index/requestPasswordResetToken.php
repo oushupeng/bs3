@@ -17,9 +17,6 @@ use yii\widgets\ActiveForm; ?>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">重置密码</h4>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span>&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <?php $form = ActiveForm::begin(); ?>

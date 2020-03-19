@@ -48,7 +48,8 @@ class SerachKnowledges extends Knowledges
             'query' => $query,
             'pagination' =>[
                 'pageSize' => '10',
-            ]
+            ],
+            'sort' => ['defaultOrder' => ['created_at' => SORT_DESC]],
         ]);
 
         $this->load($params);
@@ -65,7 +66,7 @@ class SerachKnowledges extends Knowledges
             'knowledges_id' => $this->knowledges_id,
             'views' => $this->views,
             'created_at' => $this->created_at,
-            'deleted_at' => $this->deleted_at,
+            'deleted_at' => 0,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

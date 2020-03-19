@@ -175,6 +175,12 @@ class PetsController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionDeleteall()
+    {
+//        return Pets::deleteAll(['in','id',Yii::$app->request->post('arr_id')]);
+        return Pets::updateAll(['deleted_at' => time()], ['id' => Yii::$app->request->post('arr_id')]);
+    }
+
     /**
      * Finds the Pets model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
