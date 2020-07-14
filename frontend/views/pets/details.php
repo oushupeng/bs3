@@ -17,21 +17,6 @@ use yii\widgets\ActiveForm;
 
 <body>
 
-<div class="">
-    <div id="mycarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <a href="">
-                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
 
 <div class="container-fluid pt">
 <div class="container">
@@ -60,7 +45,7 @@ use yii\widgets\ActiveForm;
 
                                     <?= Html::textInput('ShopCart[pets_id]', $model->id, ['class' => 'details hidden']) ?>
 
-                                    <?= $model->id ?>
+                                    <?= $model->pets_id ?>
                                 </td>
                             </tr>
                             <tr>
@@ -87,7 +72,8 @@ use yii\widgets\ActiveForm;
                             <tr>
                                 <td>剩余库存：</td>
                                 <td>
-                                    <?= $model->sales ?>
+                                    <?= $model->stock ?>
+                                    <?= Html::textInput('stock', $model->stock, ['class' => 'hidden']) ?>
                                 </td>
                             </tr>
 
@@ -162,10 +148,12 @@ use yii\widgets\ActiveForm;
 
                 <p class="suojin">4.售出7日内发生任何疫苗范围内的传染性疾病可为您更换，保证宝宝在您身边健康快乐的成长。 </p>
 
+                <p></p>
+                <p class="suojin"><?= $model->content?></p>
 
                 <div style="margin: 40px;">
-                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2" style="height: 500px;">
-                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2" style="height: 500px;">
+                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2" style="height: 500px;width: 500px;">
+                    <img src="<?= $model->picture ?>" class="img-fluid detailsPicture2" style="height: 500px;idth: 500px;">
 
                 </div>
             </div>
@@ -173,7 +161,7 @@ use yii\widgets\ActiveForm;
         </div>
 
 
-        <div class="col-md-3" style="border:5px #efefef solid;border-radius: 20px;margin-top: 5%;padding-left: 2%;padding-right: 2%">
+        <div class="col-md-3" style="border:5px #ffdcb9 solid;border-radius: 20px;margin-top: 5%;padding-left: 2%;padding-right: 2%">
             <div class="col-md-12">
                 <div class="title1" style="">
                     <h5>掌柜推荐</h5>
@@ -189,7 +177,7 @@ use yii\widgets\ActiveForm;
                     <div class="col-md-12 col-12">
                         <div class="card mb-3">
                             <a href="<?= Url::to(['/pets/details', 'id' => $m->id])?>">
-                                <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                <img src="<?= $m['picture'] ?>" alt="" class="card-img-top" style="height: 228px;width: 228px">
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5><?= $m['category']?></h5>
                                     <p>&nbsp; </p>

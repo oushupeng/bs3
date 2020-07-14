@@ -30,6 +30,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
+    const STATUS_FROZEN = 8;
 
     /**
      * {@inheritdoc}
@@ -56,7 +57,9 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED, self::STATUS_FROZEN]],
+//            [['head'], 'required', 'message' => '图片不能为空'],
+            [['head'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg'],
         ];
     }
 
@@ -80,11 +83,11 @@ class User extends ActiveRecord implements IdentityInterface
      * Finds user by username
      *
      * @param string $username
-     * @return static|null
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+//        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::find()->where(['username' => $username, 'status' => self::STATUS_ACTIVE])->orWhere(['username' => $username, 'status' => self::STATUS_FROZEN])->one();
     }
 
     /**
@@ -216,5 +219,17 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $file_path  = 'uploads/' . $this->head->baseName . '.' . $this->head->extension;
+            $this->head->saveAs($file_path);
+            return $file_path ;
+        }
+
+        return false;
     }
 }

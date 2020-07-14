@@ -7,12 +7,12 @@ use yii\helpers\Html;
 
 $this->title = '更新信息: ' ;
 $this->params['breadcrumbs'][] = ['label' => '宠物猫管理', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => '标题：'.$model->name, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => '类别：'.$model->category, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = '更新';
 ?>
 <div class="pets-update">
 
-    <?= $this->render('_form', [
+    <?= $this->render('_form2', [
         'model' => $model,
     ]) ?>
 

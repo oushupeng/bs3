@@ -12,7 +12,7 @@ class LoginForm extends Model
 {
     public $username;
     public $password;
-    public $rememberMe = true;
+    public $rememberMe = false;
 
     private $_user;
     public $verifyCode;
@@ -61,11 +61,22 @@ class LoginForm extends Model
      */
     public function login()
     {
-        if ($this->validate()) {
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+        $aa = $this->getUser();
+        $bb = $aa->id;
+        if ($aa->status === 8) {
+            Yii::$app->getSession()->setFlash('error', '该账号已经被冻结了，无法进行登录');
+            return false;
         }
 
-        Yii::$app->getSession()->setFlash('error','用户名、密码或者验证码错误.');
+        if ($this->validate()) {
+            $update = User::findOne($bb);
+            $update->last_login_time = time();
+            if ($update->save()) {
+                return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+            }
+        }
+
+        Yii::$app->getSession()->setFlash('error', '用户名、密码或者验证码错误.');
         return false;
     }
 
@@ -82,10 +93,10 @@ class LoginForm extends Model
                     return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
                 }
                 return false;
-            }else {
+            } else {
 
 
-            echo "<script> alert('对不起，你不是管理员，你没有权限登录后台管理系统'); </script>";
+                echo "<script> alert('对不起，你不是管理员，你没有权限登录后台管理系统'); </script>";
             }
         }
 

@@ -85,7 +85,12 @@ class OrdersController extends Controller
     {
 
         $model = $this->findModel($id);
-        $orderDetails = OrdersDetails::find()->where(['order_id' => $model->order_id])->one();
+//        $orderDetails = OrdersDetails::find()->where(['order_id' => $model->order_id])->one();
+        $orderDetails = OrdersDetails::find()
+            ->innerJoinWith(['order', 'name'])
+            ->where(['orders.order_id' => $model->order_id])
+            ->orderBy(['orders.created_at' => SORT_DESC])
+            ->all();
         $pet = Pets::find()->where(['id' => $orderDetails->pets_id])->one();
 
         return $this->render('view', [
@@ -111,7 +116,7 @@ class OrdersController extends Controller
         $model->user_name = $username;
         $model->user_id = $id;
 
-        $model->status = '代付款';
+        $model->status = '待付款';
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -133,8 +138,16 @@ class OrdersController extends Controller
     {
         $model = $this->findModel($id);
 
+//        $courier = $_POST['courier_number'];
+//
+//        if (strlen($courier) === 0) {
+//            Yii::$app->getSession()->setFlash('error', '请输入快递单号');
+//        }
+//        var_dump($courier);die();
+
         $model->status = '待收货';
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('success','填写成功');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

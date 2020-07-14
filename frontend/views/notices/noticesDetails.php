@@ -13,25 +13,6 @@ use yii\helpers\Html; ?>
 
 <body>
 
-<div class="">
-
-    <div id="mycarousel" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <a href="">
-                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>商城公告</h5>
-                        <p>最新十条公告信息。。。</p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</div>
 
 <div class="container-fluid pt">
 <div class="container">
@@ -39,7 +20,7 @@ use yii\helpers\Html; ?>
         <div class="col-md-12 ">
             <h2 class="text-center"><?= $model->title ?></h2>
 
-            <div class="text-center" style="background-color: #f6f654;margin-top: 30px;margin-bottom: 30px;padding: 10px">
+            <div class="text-center" style="background-color: #ffdcb9;margin-top: 30px;margin-bottom: 30px;padding: 10px">
                 <small>发布时间：<?= date('Y-m-d', $model->created_at) ?></small>
                 &nbsp;&nbsp;&nbsp;&nbsp;
 <!--                <small>浏览：--><?//= $model->views ?><!--</small>-->

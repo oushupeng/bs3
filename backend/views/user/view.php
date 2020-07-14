@@ -33,16 +33,21 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'value' => function($model){
-                    if ($model->status === User::STATUS_ACTIVE){
+                    if ($model->status === User::STATUS_ACTIVE) {
                         return '已激活';
                     }
-                    return '未激活';
+
+                    if ($model->status === User::STATUS_INACTIVE) {
+                        return '未激活';
+                    }
+
+                    return '冻结';
                 },
                 'footerOptions' => ['class'=>'hide']
             ],
-            'last_login_time:datetime',
             'created_at:datetime',
-            'updated_at:datetime',
+//            'updated_at:datetime',
+            'last_login_time:datetime',
         ],
     ]) ?>
 

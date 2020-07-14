@@ -12,7 +12,7 @@ class NoticesController extends Controller
 {
     public function actionNotices()
     {
-        $model = Notices::find()->where(['deleted_at' => 0])->all();
+        $model = Notices::find()->where(['deleted_at' => 0])->orderBy(['created_at' => SORT_DESC])->all();
         return $this->render('notices',['model' => $model]);
     }
 

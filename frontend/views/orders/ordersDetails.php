@@ -147,7 +147,7 @@ use yii\widgets\LinkPager;
 
         <div class="row">
             <div class="col-12 text-center more">
-                <?php if ($order->status === '代付款') { ?>
+                <?php if ($order->status === '待付款') { ?>
                     <!--                    --><? //= Html::a('去付款', ['orders'], ['class' => 'btn btn-primary']) ?>
                     <?= Html::a('去付款', ['orders'], ['class' => 'btn btn-primary', 'data-toggle' => 'modal', 'data-target' => '#mymodala']) ?>
 

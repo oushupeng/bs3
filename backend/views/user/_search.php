@@ -70,7 +70,7 @@ use yii\widgets\ActiveForm;
                 </th>
                 <th scope="col">
                     账号状态：
-                    <?= Html::textInput('SerachUser[status]', '', ['class' => 'form-control ', 'style' => 'width:70%;display: inline;']) ?>
+                    <?= Html::textInput('SerachUser[status]', '', ['class' => 'form-control ', 'placeholder' => '已激活：10、未激活：9、冻结：8','style' => 'width:70%;display: inline;']) ?>
                 </th>
                 <th scope="col">
                     <?= Html::submitButton('搜索', ['class' => 'btn btn-primary']) ?>

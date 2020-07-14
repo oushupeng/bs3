@@ -119,6 +119,7 @@ class NoticesController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->getSession()->setFlash('success', '更新成功');
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

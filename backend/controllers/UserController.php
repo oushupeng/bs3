@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use backend\models\User;
 use backend\models\SerachUser;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -20,6 +21,32 @@ class UserController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create', 'update', 'delete', 'index'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['update', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -107,6 +134,38 @@ class UserController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionFrozen($id)
+    {
+        $cc = Yii::$app->authManager->getAssignments($id);
+        $user_id = Yii::$app->user->identity->id;
+        if ((int)$id === $user_id) {
+            Yii::$app->getSession()->setFlash('error', '你不能对自己进行冻结');
+            return $this->redirect(['index']);
+        }else {
+        if ($cc) {
+            Yii::$app->getSession()->setFlash('error', '你没有权限对他进行冻结，他也是管理员之一，不能对管理员进行操作');
+            return $this->redirect(['index']);
+        }else {
+            $model = $this->findModel($id);
+            $model->status = 8;
+            if ($model->save()) {
+                Yii::$app->getSession()->setFlash('success', '冻结成功');
+                return $this->redirect(['index']);
+            }
+        }
+        }
+    }
+
+    public function actionThaw($id)
+    {
+        $model = $this->findModel($id);
+        $model->status = 10;
+        if ($model->save()) {
+            Yii::$app->getSession()->setFlash('success', '解冻成功');
+            return $this->redirect(['index']);
+        }
     }
 
     /**

@@ -17,7 +17,7 @@
         <div class="carousel-inner" role="listbox">
             <div class="carousel-item active">
                 <a href="">
-                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
+                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/about1.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
 <!--                        <h5>关于我们</h5>-->
 <!--                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="container-fluid pt" style="background-color: #fffcec">
+<div class="container-fluid pt">
     <div class="container">
     <div class="row" >
         <div class="col-md-12">
@@ -42,7 +42,7 @@
 
         </div>
 
-        <div class="col-md-12" style="border:5px #efefef solid;border-radius: 20px;padding: 2%;margin-top: 2%">
+        <div class="col-md-12" style="border:5px #ffdcb9 solid;border-radius: 20px;padding: 2%;margin-top: 2%">
             <div class="" style="">
                 <p>猫咪交易网是一个定位于推动国内宠物交易市场的健康发展的交易平台，以打造“提供真健康、真品相、真售后的优质宠物交易平台。凭借多年的经验，我公司致力于猫咪，提供专业服务，协同时代节拍，力求尽善尽美。</p>
 

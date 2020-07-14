@@ -28,7 +28,7 @@ class m200126_091901_create_orders_table extends Migration
             'remarks' => $this->string()->defaultValue('')->notNull()->comment('订单备注'),
             'payment' => $this->string()->defaultValue('')->notNull()->comment('付款方式，alipay：支付宝，wechat：微信'),
             'delivery' => $this->string()->defaultValue('')->notNull()->comment('送货方式，mail：邮寄，cash-on-delivery：货到付款'),
-            'status' => $this->string()->defaultValue('')->notNull()->comment('订单状态，pay：代付款，send：代发货，receiving：待收货，evaluate：评价'),
+            'status' => $this->string()->defaultValue('')->notNull()->comment('订单状态，pay：待付款，send：待发货，receiving：待收货，evaluate：评价'),
 
             'express_id' => $this->bigInteger()->defaultValue(0)->notNull()->comment('快递id'),
             'courier_number' => $this->bigInteger()->defaultValue(0)->notNull()->comment('快递单号'),

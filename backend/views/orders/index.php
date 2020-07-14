@@ -60,11 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', '执行发货'),
                             'aria-label' => Yii::t('yii', 'Update'),
                             'data-pjax' => '0',
-                            'class' => 'btn btn-success btn-xs',
+                            'class' => 'btn btn-danger btn-xs',
                         ];
 //                        var_dump($model->status);die();
-                        if ($model->status === '代发货') {
+                        if ($model->status === '待发货') {
                         return Html::a('执行', $url, $options);
+                        }
+                        if ($model->status === '待收货') {
+                            return Html::a('已执行','#',['class' => 'btn btn-success btn-xs']);
                         }
                     },
                 ]

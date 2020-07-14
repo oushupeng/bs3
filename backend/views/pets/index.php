@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     $(".gridview").on("click", function () {
 
-        if(confirm('您确定要删除吗1？')){
+        if(confirm('您确定要删除这些数据吗？')){
 
         var keys = $("#grid").yiiGridView("getSelectedRows");
 

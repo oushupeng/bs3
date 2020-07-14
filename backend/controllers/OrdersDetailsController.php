@@ -23,6 +23,29 @@ class OrdersDetailsController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['create', 'update', 'delete', 'index'],
+                'rules' => [
+                    [
+                        'actions' => ['index', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['create', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['update', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                    [
+                        'actions' => ['delete', 'error'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
             ],
             'verbs' => [
                 'class' => VerbFilter::className(),

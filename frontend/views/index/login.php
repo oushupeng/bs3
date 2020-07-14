@@ -37,14 +37,11 @@ $this->title = '登录页面';
                         <?= $form->field($model, 'password')->passwordInput()->label('密码') ?>
                     </div>
                 </div>
-<!--                <div class="form-group row">-->
-<!--                    <div class="col-md-10 offset-md-2">-->
-<!--                        <div class="form-check">-->
-<!--                            <input type="checkbox" name="remember" id="remember" class="form-check-input">-->
-<!--                            <label for="remember" class="form-check-label">记住我</label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <?= $form->field($model, 'rememberMe')->checkbox(['label' => '记住我，十天内免登录']) ?>
+                    </div>
+                </div>
                 <div class="form-group row">
                     <div class="col-md-12">
                         <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
@@ -57,7 +54,7 @@ $this->title = '登录页面';
                     <div class="col-md-12 offset-md-1">
                         <?= Html::submitButton('登录', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                         <?= Html::a('注册', ['/site/signup'], ['class' => 'btn btn-primary']) ?>
-                        <?= Html::resetButton('重置', ['class'=>'btn btn-primary','name' =>'submit-button']) ?>
+                        <?= Html::resetButton('重置', ['class' => 'btn btn-primary', 'name' => 'submit-button']) ?>
                         <?= Html::a('忘记密码', ['site/request-password-reset'], ['class' => 'btn btn-primary']) ?>
 
                     </div>
@@ -70,7 +67,6 @@ $this->title = '登录页面';
     </div>
 </div>
 </div>
-
 
 
 </body>

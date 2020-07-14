@@ -13,27 +13,27 @@ use yii\helpers\Html; ?>
 
 <body>
 
-<div class="">
+<!--<div class="">-->
+<!---->
+<!--    <div id="mycarousel" class="carousel slide" data-ride="carousel">-->
+<!---->
+<!--        <div class="carousel-inner" role="listbox">-->
+<!--            <div class="carousel-item active">-->
+<!--                <a href="">-->
+<!--                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
+<!--                        <h5>商城公告</h5>-->
+<!--                        <p>最新十条公告信息。。。</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!---->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</div>-->
 
-    <div id="mycarousel" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <a href="">
-                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>商城公告</h5>
-                        <p>最新十条公告信息。。。</p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="container-fluid pt" style="background-color: #fff3ee">
+<div class="container-fluid pt">
     <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -45,7 +45,7 @@ use yii\helpers\Html; ?>
 
         </div>
 
-        <div class="col-md-12" style="border:5px #efefef solid;border-radius: 20px;padding: 2%;margin-top: 2%">
+        <div class="col-md-12" style="border:5px #ffdcb9 solid;border-radius: 20px;padding: 2%;margin-top: 2%">
             <div class="row">
                 <?php foreach ($model as $m) : ?>
                     <div class="col-md-3" >

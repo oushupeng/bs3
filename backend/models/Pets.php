@@ -42,7 +42,7 @@ class Pets extends \yii\db\ActiveRecord
             [['content'], 'string'],
             [['name'], 'required', 'message' => '宠物名称不能为空'],
             [['category'], 'required', 'message' => '宠物类别不能为空'],
-            ['category', 'unique', 'message' => ' 已经添加了该类别的宠物'],
+            ['category', 'unique', 'message' => ' 已经添加了该类别的宠物,或者在回收站存在'],
             [['pets_id'], 'required', 'message' => '宠物编号不能为空'],
             ['pets_id', 'unique', 'message' => ' 已经有相同的宠物编号'],
             [['price'], 'required', 'message' => '宠物价格不能为空'],

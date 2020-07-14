@@ -55,7 +55,7 @@ $num = 1;
                             'data-pjax' => '0',
                             'class' => 'btn btn-primary btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                        return Html::a('查看', $url, $options);
                     },
                     'update' => function ($url, $model, $key) {
                         $options = [
@@ -64,7 +64,7 @@ $num = 1;
                             'data-pjax' => '0',
                             'class' => 'btn btn-success btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
+                        return Html::a('更新', $url, $options);
                     },
                     'delete' => function ($url, $model, $key) {
                         $options = [
@@ -75,7 +75,7 @@ $num = 1;
                             'data-pjax' => '0',
                             'class' => 'btn btn-danger btn-xs',
                         ];
-                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+                        return Html::a('删除', $url, $options);
                     },
                 ]
             ],

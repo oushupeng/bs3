@@ -28,8 +28,8 @@ use yii\widgets\LinkPager;
                 <a href="">
                     <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        <h5>提交订单</h5>
+                        <!--                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
                     </div>
                 </a>
             </div>
@@ -107,17 +107,17 @@ use yii\widgets\LinkPager;
                             <tr>
                                 <td scope="row">收货人</td>
                                 <td>
-                                    <input type="text" class="form-control" name="Orders[consignee]" id="consignee">
+                                    <input type="text" class="form-control" name="Orders[consignee]" id="consignee" placeholder="收货人姓名">
                                 </td>
                                 <td scope="row">电话号码</td>
                                 <td>
-                                    <input type="number" class="form-control" name="Orders[telephone]" id="telephone">
+                                    <input type="number" class="form-control" name="Orders[telephone]" id="telephone" placeholder="11位有效的电话号码">
                                 </td>
                             </tr>
                             <tr>
                                 <td scope="row">收货地址</td>
                                 <td>
-                                    <input type="text" class="form-control" name="Orders[address]" id="address">
+                                    <input type="text" class="form-control" name="Orders[address]" id="address" placeholder="详细的收货地址">
                                 </td>
                                 <td scope="row">送货方式</td>
                                 <td>
@@ -136,6 +136,10 @@ use yii\widgets\LinkPager;
                                         <option value="货到付款">货到付款</option>
                                     </select>
                                 </td>
+                                <td scope="row">备注</td>
+                                <td>
+                                    <input type="text" class="form-control" name="Orders[remarks]" id="remarks">
+                                </td>
                             </tr>
                             </tbody>
                         </table>
@@ -147,17 +151,19 @@ use yii\widgets\LinkPager;
 
     <div class="row">
         <div class="col-12 text-center more">
-            <button type="submit" class="btn btn-primary" onclick="checkfun();">提交订单</button>
+            <button type="submit" class="btn btn-primary checkfun">提交订单</button>
         </div>
     </div>
 </div>
 </div>
 <?php ActiveForm::end(); ?>
+<script src="/bs3/frontend/web/js/jquery-3.3.1.min.js"></script>
 <script language="javascript" type="text/javascript">
-    function checkfun() {
+    $(".checkfun").on('click', function () {
         var consignee = document.getElementById("consignee").value;
         var telephone = document.getElementById("telephone").value;
         var address = document.getElementById("address").value;
+        var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
         if (consignee === "") {
             alert('收货人不可以为空');
             return false;
@@ -167,11 +173,13 @@ use yii\widgets\LinkPager;
         } else if (address === "") {
             alert('收货地址不可以为空');
             return false;
+        } else if(!myreg.test(telephone)) {
+            alert('无效的电话号码');
+            return false;
         }
 
-    }
+    })
 </script>
-
 </body>
 
 </html>

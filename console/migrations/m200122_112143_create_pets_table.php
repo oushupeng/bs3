@@ -20,7 +20,7 @@ class m200122_112143_create_pets_table extends Migration
 
         $this->createTable('{{%pets}}', [
             'id' => $this->primaryKey(),
-            'pets_id' => $this->integer()->defaultValue(0)->notNull()->comment('宠物编号'),
+            'pets_id' => $this->bigInteger()->defaultValue(0)->notNull()->comment('宠物编号'),
             'name' => $this->string()->defaultValue('')->notNull()->comment('名称'),
             'category' => $this->string()->defaultValue('')->notNull()->comment('类别'),
             'price' => $this->integer()->defaultValue(0)->notNull()->comment('价格'),

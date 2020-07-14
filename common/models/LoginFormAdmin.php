@@ -12,11 +12,10 @@ class LoginFormAdmin extends Model
 {
     public $username;
     public $password;
-    public $rememberMe = true;
+    public $rememberMe = false;
 
     private $_user;
     public $verifyCode;
-
 
     /**
      * {@inheritdoc}
@@ -61,7 +60,7 @@ class LoginFormAdmin extends Model
                 $update = User::findOne($bb);
                 $update->last_login_time = time();
                 if ($update->save()) {
-                    return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
+                    return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 10 : 0);
                 }
                 return false;
             }else {

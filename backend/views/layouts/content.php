@@ -39,8 +39,10 @@ use dmstr\widgets\Alert;
     <div class="pull-right hidden-xs">
         <b>Version</b> 2.0
     </div>
-    <strong>Copyright &copy; 2019-<?= date('Y')?> .</strong> All rights
-    reserved.
+    <strong>Copyright &copy; 2019-<?= date('Y')?> .</strong>
+<!--    All rights-->
+<!--    reserved.-->
+    CWCAT宠物猫后台管理系统
 </footer>
 
 <!-- Control Sidebar -->

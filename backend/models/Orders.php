@@ -16,7 +16,7 @@ use Yii;
  * @property string $remarks 订单备注
  * @property string $payment 付款方式，alipay：支付宝，wechat：微信
  * @property string $delivery 送货方式，mail：邮寄，cash-on-delivery：货到付款
- * @property string $status 订单状态，pay：代付款，send：代发货，receiving：待收货，evaluate：评价
+ * @property string $status 订单状态，pay：待付款，send：待发货，receiving：待收货，evaluate：评价
  * @property int $express_id 快递id
  * @property int $courier_number 快递单号
  * @property int $user_id 下单人id

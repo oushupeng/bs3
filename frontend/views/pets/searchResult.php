@@ -10,27 +10,27 @@
 
 <body>
 
-<div class="">
+<!--<div class="">-->
+<!---->
+<!--    <div id="mycarousel" class="carousel slide" data-ride="carousel">-->
+<!---->
+<!--        <div class="carousel-inner" role="listbox">-->
+<!--            <div class="carousel-item active">-->
+<!--                <a href="">-->
+<!--                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">-->
+<!--                    <div class="carousel-caption d-none d-md-block">-->
+<!--                        <h5>First slide label</h5>-->
+<!--                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--            </div>-->
+<!---->
+<!--        </div>-->
+<!---->
+<!--    </div>-->
+<!--</div>-->
 
-    <div id="mycarousel" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <a href="">
-                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="container-fluid ph1 aa pt">
+<div class="container pt">
     <div class="row">
         <div class="col-md-12">
             <div class="col-md-12">
@@ -49,10 +49,10 @@
         use yii\helpers\Url;
 
         foreach ($model as $m) : ?>
-            <div class="col-md-3 col-12">
+            <div class="col-md-4 col-12">
                 <div class="card mb-3">
                     <a href="<?= Url::to(['/pets/details', 'id' => $m->id])?>">
-                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top" style="height: 350px;">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title htitle">

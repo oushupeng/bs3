@@ -26,8 +26,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('返回', ['index'], ['class' => 'btn btn-success']) ?>
-        <?php if ($model->status === '代发货') {?>
-            <?= Html::a('填写快递单号', ['index'], ['class' => 'btn btn-primary']) ?>
+        <?php if ($model->status === '待发货') {?>
+            <?= Html::a('填写快递单号', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?php }?>
     </p>
     <?= DetailView::widget([
@@ -68,17 +68,26 @@ $this->params['breadcrumbs'][] = $this->title;
             <th scope="col">宠物猫类别</th>
             <th scope="col">单价</th>
             <th scope="col">数量</th>
-            <th scope="col">总价</th>
+            <th scope="col">金额</th>
             <th scope="col">状态</th>
         </tr>
         </thead>
         <tbody>
+        <?php foreach ($orderDetails as $d) :
+            $pet = $d->name;
+            $order = $d->order;
+            ?>
         <tr>
             <td><?= $pet->category ?></td>
             <td><?= $pet->price ?></td>
-            <td><?= $orderDetails->pets_num ?></td>
-            <td><?= $model->amount ?></td>
-            <td><?= $model->status ?></td>
+            <td><?= $d->pets_num ?></td>
+            <td><?= $pet->price * $d->pets_num ?></td>
+            <td><?= $order->status ?></td>
+        </tr>
+        <?php endforeach;?>
+        <tr>
+            <td colspan="3"></td>
+            <td colspan="2">总价：<?= $model->amount?></td>
         </tr>
         </tbody>
     </table>

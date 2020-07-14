@@ -58,7 +58,7 @@ $username = Yii::$app->user->identity->username;
 </div>
 <?php ActiveForm::end(); ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light aa" style="font-size: 12px;padding-top: 0;padding-bottom: 0">
+<nav class="navbar navbar-expand-lg navbar-light  aa" style="font-size: 12px;padding-top: 0;padding-bottom: 0;background-color: #e6e6f2">
     <a class="navbar-brand" href="#"></a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -92,7 +92,15 @@ $username = Yii::$app->user->identity->username;
                     <!--                        <li class="nav-item"><a href="" class="nav-link " data-toggle="modal" data-target="#mymodal">登录</a></li>-->
                 <? } else { ?>
                     <li class="nav-item">
-                        <?= Html::a('退出登录(' . $username . ')', ['/site/logout'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
+                        <?= Html::a('退出登录(' . $username . ')', ['/site/logout'], ['class' => 'nav-link',
+                            'data' => [
+                                'confirm' => '您确定要退出登录吗?',
+                                'method' => 'post',
+                                'params' => [
+                                    'params_key' => 'params_val'
+                                ]
+                            ],
+                            ]) ?>
                     </li>
                     <li class="nav-item">
                         <?= Html::a('个人中心', ['/index/personal'], ['data-method' => 'post', 'class' => 'nav-link']) ?>
@@ -106,7 +114,7 @@ $username = Yii::$app->user->identity->username;
                     </li>
                 <? } ?>
 
-                <li class="nav-item"><a href="" class="nav-link">客服</a></li>
+<!--                <li class="nav-item"><a href="" class="nav-link">客服</a></li>-->
 
                 <!--                    <li class="nav-item"><a href="" class="nav-link">客服</a></li>-->
             </ul>
@@ -161,20 +169,23 @@ $username = Yii::$app->user->identity->username;
 <!--    </div>-->
 <!--</nav>-->
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top aa">
+<!--navbar-light bg-light-->
+<!--navbar-dark bg-dark sticky-top-->
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top  aa">
     <!--    <a class="navbar-brand" href="#">xxx</a>-->
     <a class="navbar-brand" href="<?= Url::to(['index/index']) ?>">
 
-        <img src="/bs3/frontend/views/public/image/a1.jpg" width="30" height="30"
-             class="d-inline-block align-top header"
-             alt="">
+<!--        <img src="/bs3/frontend/views/public/image/a1.jpg" width="30" height="30"-->
+<!--             class="d-inline-block align-top header"-->
+<!--             alt="">-->
+        <h1 style="font-family: 华文行楷;color: #ff8000">CWCAT宠物猫商城</h1>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#tabs_nav"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="tabs_nav" style="margin: 0 auto">
+    <div class="collapse navbar-collapse" id="tabs_nav" style="margin: 0 auto 0 3%;">
         <ul class="navbar-nav mr-auto">
             <a class="nav-link" href="#" style="display: none"></a>
 
@@ -208,16 +219,17 @@ $username = Yii::$app->user->identity->username;
         <?php $form = ActiveForm::begin(['action' => ['pets/search'], 'method' => 'get']) ?>
 
         <?php
-        $aa = \backend\models\Pets::find()->all();
+        $aa = \backend\models\Pets::find()->where(['deleted_at' => 0])->all();
         ?>
-        <select class="custom-select" name="category" style="width: 250px;float:left;margin-right: 10px;">
+        <select class="custom-select" name="category" style="width: 160px;float:left;margin-right: 10px;">
             <option selected value="">请选择猫的类别</option>
             <?php foreach ($aa as $a): ?>
                 <option value="<?= $a->category ?>"><?= $a->category ?></option>
             <?php endforeach; ?>
 
         </select>
-        <button class="btn btn-outline-success  my-sm-0" type="submit">搜索</button>
+        <input type="text" style="width: 160px;float:left;margin-right: 10px;" class="form-control" placeholder="类别搜索" name="category2">
+        <button class="btn btn-outline-warning  my-sm-0" type="submit">搜索</button>
 <!--        --><?//= Html::submitButton('搜索',['class' => 'btn btn-success '])?>
 
         <?php ActiveForm::end() ?>

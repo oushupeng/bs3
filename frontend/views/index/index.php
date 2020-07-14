@@ -31,8 +31,8 @@ use yii\web\View;
                 <a href="">
                     <img class="d-block w-100 content" src="/bs3/frontend/views/public/image/c1.jpg" alt="First slide">
                     <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+<!--                        <h5>First slide label</h5>-->
+<!--                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
                     </div>
                 </a>
             </div>
@@ -65,8 +65,53 @@ use yii\web\View;
         <div class="col-md-12" style="background-color: #fdffff;">
             <div class="aa" style="margin-bottom: 2%;margin-top: 2%;">
                 <div class="row">
-                    <div class="col-md-2"
-                         style="border:5px #efefef solid;border-radius: 20px;margin-right: 4%;">
+                    <div class="col-md-9"
+                    >
+                        <div  style="padding-left: 20px;padding-right: 20px;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="title1 lefta" style="">
+                                        <h5>宠物猫推荐</h5>
+                                        <P></P>
+                                    </div>
+                                    <div class="title1 more2"
+                                         style="margin-bottom: 0;padding: 5px;float: right">
+                                        <h5 style="margin-bottom: 0">
+                                    <span style="">
+                                        <?= Html::a('更多 >>', ['/pets/category']) ?>
+                                    </span>
+                                        </h5>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
+
+                            <div class="row">
+                                <?php foreach ($model as $m): ?>
+                                    <div class="col-md-4 col-12">
+                                        <div class="card mb-3">
+                                            <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
+                                                <img src="<?= $m['picture'] ?>" alt="" class="card-img-top" style="height: 300px;">
+                                            </a>
+                                            <div class="card-body">
+                                                <h5 class="card-title htitle">
+                                                    <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
+                                                </h5>
+                                                <div class="card-text kapian">
+                                                    ￥<?= $m['price'] ?>
+                                                </div>
+                                                <small class="text-muted card-text float-right">销售数量：<?= $m['sales'] ?></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3"
+                         style="border:5px #ffdcb9 solid;border-radius: 20px;">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="title1 lefta" style="">
@@ -84,7 +129,6 @@ use yii\web\View;
                             </div>
                         </div>
                         <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
-
                         <div class="row">
                             <div class="col-md-12 col-12">
                                 <div class="row">
@@ -108,57 +152,10 @@ use yii\web\View;
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-7"
-                         style="border:5px #efefef solid;border-radius: 20px;margin-right: 4%;">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="title1 lefta" style="">
-                                    <h5>热销推荐</h5>
-                                    <P></P>
-                                </div>
-                                <div class="title1 more2"
-                                     style="margin-bottom: 0;padding: 5px;float: right">
-                                    <h5 style="margin-bottom: 0">
-                                    <span style="">
-                                        <?= Html::a('更多 >>', ['/pets/category']) ?>
-                                    </span>
-                                    </h5>
-                                </div>
-                            </div>
-
-                        </div>
-                        <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
-
-                        <div class="row">
-                            <?php foreach ($model as $m): ?>
-                                <div class="col-md-4 col-12">
-                                    <div class="card mb-3">
-                                        <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
-                                            <img src="<?= $m['picture'] ?>" alt="" class="card-img-top ">
-                                        </a>
-                                        <div class="card-body">
-                                            <h5 class="card-title htitle">
-                                                <?= Html::a($m['category'], ['/pets/details', 'id' => $m->id]) ?>
-                                            </h5>
-                                            <div class="card-text kapian">
-                                                ￥<?= $m['price'] ?>
-                                            </div>
-                                            <small class="text-muted card-text float-right">销售数量：<?= $m['sales'] ?></small>
-                                        </div>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2" style="border:5px #efefef solid;border-radius: 20px;">
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="title1 lefta" style="">
-                                    <h5>商城公告</h5>
+                                    <h5>商城最新动态</h5>
                                     <P></P>
                                 </div>
                                 <div class="title1 more2"
@@ -172,7 +169,6 @@ use yii\web\View;
                             </div>
                         </div>
                         <hr style="margin-top: 0;background-color: #adadad;height: 1px;"/>
-
                         <div class="row">
                             <div class="col-md-12 col-12">
                                 <div class="">
@@ -184,7 +180,7 @@ use yii\web\View;
                                                       fill="#ffc78e"></path>
                                             </svg>
                                             <small class="text-muted">
-                                                <?= Html::a($m['content'], ['/pets/details', 'id' => $m->id]) ?>
+                                                <?= Html::a($m['title'], ['/notices/notices-details', 'id' => $m->id]) ?>
                                             </small>
                                         </p>
                                     <?php endforeach; ?>
@@ -192,18 +188,23 @@ use yii\web\View;
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
 
 
+
+
         <div class="col-md-12" style="background-color: #ecf5ff;">
-            <div class="aa">
+            <div class="container">
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="title text-center" style="">
                             <h4>新品上架</h4>
-                            <p>最新上架，新宠物。。。</p>
+                            <p>最新上架的8种宠物，新宠物。。。</p>
                         </div>
                     </div>
                     <div class="row">
@@ -211,7 +212,7 @@ use yii\web\View;
                             <div class="col-md-3 col-12 x_bk">
                                 <div class="card mb-1">
                                     <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
-                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top kpimage">
                                     </a>
                                     <div class="card-body">
                                         <h5 class="card-title htitle">
@@ -220,27 +221,31 @@ use yii\web\View;
                                         <div class="card-text kapian">
                                             ￥<?= $m['price'] ?>
                                         </div>
-                                        <small class="text-muted card-text float-right">销售数量：<?= $m['sales'] ?></small>
+                                        <small class="text-muted card-text float-right">
+                                            上架日期：
+                                            <?= date('Y-m-d', $m->created_at)?>
+                                        </small>
                                     </div>
                                 </div>
                             </div>
                         <?php endforeach; ?>
                     </div>
                     <div class="col-12 text-center more">
-                        <?= Html::a('查看更多>>', ['pets/news-upper-shelf'], ['class' => 'btn btn-info']) ?>
+                        <?= Html::a('查看更多>>', ['pets/news-upper-shelf'], ['class' => 'btn btn-warning']) ?>
                     </div>
                 </div>
+
             </div>
         </div>
 
 
         <div class="col-md-12" style="background-color: #efefef;">
-            <div class="aa">
+            <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="title text-center" style="">
                             <h4>销售排行</h4>
-                            <p>销售推荐，热买的宠物猫。。。</p>
+                            <p>销售量前8的宠物猫，热买的宠物猫。。。</p>
                         </div>
                     </div>
                     <div class="row">
@@ -248,7 +253,7 @@ use yii\web\View;
                             <div class="col-md-3 col-12 x_bk2">
                                 <div class="card mb-1">
                                     <a href="<?= Url::to(['/pets/details', 'id' => $m->id]) ?>">
-                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                        <img src="<?= $m['picture'] ?>" alt="" class="card-img-top kpimage">
                                     </a>
                                     <div class="card-body">
                                         <h5 class="card-title htitle">
@@ -264,7 +269,7 @@ use yii\web\View;
                         <?php endforeach; ?>
                     </div>
                     <div class="col-12 text-center more">
-                        <?= Html::a('查看更多>>', ['pets/ranking'], ['class' => 'btn btn-info']) ?>
+                        <?= Html::a('查看更多>>', ['pets/ranking'], ['class' => 'btn btn-warning']) ?>
                     </div>
                 </div>
             </div>

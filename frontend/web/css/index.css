@@ -63,17 +63,23 @@ footer {
 /** 详情的图片 排行 */
 .detailsPicture {
     margin: 20px 0px 20px 0px;
-    height: 350px;
+    height: 380px;
+    width: 380px;
     border-radius: 5px;
     /*background-color: red;*/
 }
 .detailsPicture2 {
     margin: 0px 0px 20px 10px;
     height: 380px;
+    width: 380px;
     /*background-color: red;*/
 }
 .indeximage {
     border-radius: 5px;
+}
+
+.kpimage{
+    height: 269px;
 }
 
 .title {
@@ -87,7 +93,7 @@ footer {
 }
 
 .detailsTitle {
-    margin-top: 30px;
+    margin-top: 10%;
     /*margin-right: 30px;*/
 }
 
@@ -118,12 +124,17 @@ footer {
 
 .htitle a:hover{
     text-decoration: none;
-    color: #007bff;
+    color: #ff5809;
 }
 
 
 .hctitle a{
     text-decoration: none;
+}
+
+.hctitle a:hover{
+    text-decoration: none;
+    color: #ff5809;
 }
 
 
@@ -170,8 +181,9 @@ footer {
 /** 加减 */
 .gw_num{border: 1px solid #dbdbdb;width: 110px;line-height: 26px;overflow: hidden;}
 .gw_num em{display: block;height: 26px;width: 26px;float: left;color: #7A7979;border-right: 1px solid #dbdbdb;text-align: center;cursor: pointer;}
-.gw_num .num{display: block;float: left;text-align: center;width: 52px;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
+.gw_num .num{display: block;float: left;text-align: center;width: 56px;font-style: normal;font-size: 14px;line-height: 24px;border: 0;}
 .gw_num em.add{float: right;border-right: 0;border-left: 1px solid #dbdbdb;}
+.gw_num em button {width: 26px;}
 .details{border: none}
 .hidden {display: none}
 
@@ -185,6 +197,15 @@ div#w1-success-0 {
 div#w0-success-0 {
     opacity: 1;
 }
+div#w55-success-0 {
+    opacity: 1;
+}
+div#w10-success-0 {
+    opacity: 1;
+}
+div#w3-success-0 {
+    opacity: 1;
+}
 
 div#w1-error-0 {
     opacity: 1;
@@ -192,15 +213,28 @@ div#w1-error-0 {
 div#w0-error-0 {
     opacity: 1;
 }
+div#w55-error-0 {
+    opacity: 1;
+}
+div#w12-error-0 {
+    opacity: 1;
+}
+div#w3-error-0 {
+    opacity: 1;
+}
+div#w4-error-0 {
+    opacity: 1;
+}
+
 
 .a_bk {
-    padding: 5px;
-    /*margin-bottom: 10px;*/
+    padding: 0px;
+    margin-bottom: 5px;
     border:7px solid white;
 }
 
 .a_bk:hover {
-    border:7px solid  #1796f9;
+    border:7px solid  #ffa042;
     border-radius:5px;
     box-sizing: border-box;
     /*这样才能使鼠标放上去的时候显示全部的蓝色框,否则因为maring的缘故，边框的右半部分会被相邻的a的边框遮盖 */
@@ -208,13 +242,14 @@ div#w0-error-0 {
 }
 
 .x_bk {
-    padding: 5px;
+    padding: 0px;
+    margin-bottom: 5px;
     /*margin-bottom: 10px;*/
     border:7px solid #ecf5ff;
 }
 
 .x_bk:hover {
-    border:7px solid  #1796f9;
+    border:7px solid  #ffa042;
     border-radius:5px;
     box-sizing: border-box;
     /*这样才能使鼠标放上去的时候显示全部的蓝色框,否则因为maring的缘故，边框的右半部分会被相邻的a的边框遮盖 */
@@ -222,13 +257,14 @@ div#w0-error-0 {
 }
 
 .x_bk2 {
-    padding: 5px;
+    padding: 0px;
+    margin-bottom: 5px;
     /*margin-bottom: 10px;*/
     border:7px solid #efefef;
 }
 
 .x_bk2:hover {
-    border:7px solid  #1796f9;
+    border:7px solid  #ffa042;
     border-radius:5px;
     box-sizing: border-box;
     /*这样才能使鼠标放上去的时候显示全部的蓝色框,否则因为maring的缘故，边框的右半部分会被相邻的a的边框遮盖 */

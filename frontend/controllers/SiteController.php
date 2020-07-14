@@ -1,6 +1,8 @@
 <?php
 namespace frontend\controllers;
 
+use backend\models\Notices;
+use backend\models\Pets;
 use common\models\UpdatePassword;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
@@ -68,16 +70,23 @@ class SiteController extends Controller
         ];
     }
 
-    /**
-     * Displays homepage.
-     *
-     * @return mixed
-     */
     public function actionIndex()
     {
-        return $this->render('index');
-    }
+        $model = Pets::find()->where(['deleted_at' => 0])->limit(3)->all();
+        $model1 = Pets::find()->where(['deleted_at' => 0])->orderBy(['sales' => SORT_DESC])->limit(8)->all();
+        $model2 = Pets::find()->where(['deleted_at' => 0])->orderBy(['created_at' => SORT_DESC])->limit(8)->all();
+        $model3 = Notices::find()->where(['deleted_at' => 0])->orderBy(['created_at' => SORT_DESC])->limit(3)->all();
+        $model4 = Pets::find()->where(['deleted_at' => 0])->limit(10)->all();
 
+        return $this->render('index',[
+                'model' => $model,
+                'model1' => $model1,
+                'model2' => $model2,
+                'model3' => $model3,
+                'model4' => $model4,
+            ]
+        );
+    }
     /**
      * 登录
      * Logs in a user.
@@ -88,7 +97,6 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest) {
             return $this->redirect(['index/index']);
-
         }
 
         $model = new LoginForm();

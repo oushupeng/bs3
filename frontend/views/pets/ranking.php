@@ -15,44 +15,50 @@ $num = 1;
 
 <body>
 
-<div class="container-fluid aa pt">
+<div class="container pt">
 
     <div class="row">
 
         <div class="col-md-12">
             <div class="text-center title" style="">
                 <h2>宠物销售排行榜</h2>
-                <p>宠物猫销售量的排行榜</p>
             </div>
         </div>
 
         <div class="col-md-3 ee"
-             style="font-family: '华文细黑',sans-serif;border:5px #efefef solid;border-radius: 20px;margin-left: 3%;margin-right: 2%">
+             style="font-family: '华文细黑',sans-serif;">
 
             <div class="">
                 <p></p>
+
+                <h5 style="background-color: #ffbb77;padding: 5px;" class="text-center">排行榜</h5>
                 <div class="nav flex-column nav-pills htitle" id="v-pills-tab" role="tablist"
                      aria-orientation="vertical">
+
                     <?php foreach ($model as $m) { ?>
                         <a class="nav-link" id="v-pills-bj-tab" data-toggle="pill" href="#<?= $m->category ?>"
-                           role="tab" aria-controls="v-pills-bj" aria-selected="false">
-                            <?= $num++ ?>、<?= $m->category ?>
+                           role="tab" aria-controls="v-pills-bj" aria-selected="false" style="border:1px #efefef solid">
+                            <span style="font-family: 华文隶书"><?= $num++ ?>、</span>
+                            <?= $m->category ?>
                             <span style="float: right">
-                                    销售量：<?= $m->sales ?>
-                                </span>
+                                    <?= $m->sales ?>
+                            </span>
+<!--                            <hr style="margin-top: 0;background-color: ;height: 1px;">-->
+
                         </a>
                     <?php } ?>
+
                 </div>
             </div>
         </div>
-        <div class="col-md-8 tab-content" id="v-pills-tabContent"
-             style="border:5px #efefef solid;border-radius: 20px;margin-right: 3%;">
-            <div class="container">
+        <div class="col-md-9 tab-content" id="v-pills-tabContent"
+             >
+            <div class="container" style="border:5px #ffdcb9 solid;border-radius: 20px;">
                 <div>
                     <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade  show active" id="lz" role="tabpanel"
                              aria-labelledby="v-pills-lz-tab">
-                            <h4 class="text-center">宠物销售排行榜</h4>
+                            <h4 class="text-center title1">宠物销售排行榜前⑩名</h4>
                             <p>美图欣赏</p>
                             <div class="row">
 
@@ -60,7 +66,7 @@ $num = 1;
 
                                     <div class="col-md-4" style="margin-bottom: 25px;">
                                         <img src="<?= $m->picture ?>" alt=""
-                                             class="img-thumbnail ">
+                                             class="img-thumbnail " style="height: 242px;width: 242px;">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5><?= $m['category'] ?></h5>
                                         </div>
@@ -77,13 +83,13 @@ $num = 1;
 
                                 <div class="row" style="margin-top: 10px;border-top: 1px solid #efefef;">
 
-                                    <div class="col-md-5">
+                                    <div class="col-md-6" >
                                         <img src="<?= $m->picture ?>" class="img-fluid detailsPicture"
                                              alt="Responsive image">
                                     </div>
-                                    <div class="col-md-7">
+                                    <div class="col-md-6">
                                         <div class="detailsTitle" style="">
-                                            <?php $form = ActiveForm::begin(['action' => ['pets/create'], 'method' => 'post']) ?>
+                                            <?php $form = ActiveForm::begin(['action' => ['pets/create2'], 'method' => 'post']) ?>
 
                                             <h5>
                                                 <?= $m->category ?>
@@ -98,12 +104,13 @@ $num = 1;
 
                                                         <?= Html::textInput('ShopCart[pets_id]', $m->id, ['class' => 'details hidden']) ?>
 
-                                                        <?= $m->id ?>
+                                                        <?= $m->pets_id ?>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td>宠物猫类别</td>
                                                     <td>
+                                                        <?= Html::textInput('ShopCart[pets_category]', $m->category, ['class' => 'details hidden']) ?>
                                                         <?= $m->category ?>
                                                     </td>
                                                 </tr>
@@ -194,10 +201,12 @@ $num = 1;
                                                     <p class="suojin">
                                                         4.售出7日内发生任何疫苗范围内的传染性疾病可为您更换，保证宝宝在您身边健康快乐的成长。 </p>
 
+                                                    <p></p>
+                                                    <p class="suojin"><?= $m->content?></p>
 
                                                     <div style="margin: 40px;">
                                                         <img src="<?= $m->picture ?>" class="img-fluid"
-                                                             style="height: 500px;">
+                                                             style="height: 500px;width: 500px;">
 
                                                     </div>
                                                 </div>

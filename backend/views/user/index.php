@@ -34,10 +34,15 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'status',
                 'value' => function($model){
-                    if ($model->status === User::STATUS_ACTIVE){
+                    if ($model->status === User::STATUS_ACTIVE) {
                         return '已激活';
                     }
-                    return '未激活';
+
+                    if ($model->status === User::STATUS_INACTIVE) {
+                        return '未激活';
+                    }
+
+                    return '冻结';
                 },
                 'footerOptions' => ['class'=>'hide']
             ],
@@ -63,7 +68,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             'title' => Yii::t('yii', '冻结'),
                             'aria-label' => Yii::t('yii', 'View'),
                             'data-pjax' => '0',
-                            'class' => 'btn btn-danger btn-xs',
+                            'class' => 'btn btn-success btn-xs',
                         ];
                         $options2 = [
                             'title' => Yii::t('yii', '解冻'),
@@ -75,7 +80,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         if ($model->status === User::STATUS_ACTIVE) {
                             return Html::a('冻结', $url, $options1);
                         }
-                        return Html::a('解冻', $url, $options2);
+                        return Html::a('解冻', ['thaw', 'id' => $model->id], $options2);
                     },
                 ]
             ],

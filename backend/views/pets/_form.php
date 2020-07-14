@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-    <?= $form->field($model, 'pets_id')->textInput(['maxlength' => true])->label('宠物编号')?>
+<!--    --><?//= $form->field($model, 'pets_id')->textInput(['maxlength' => true])->label('宠物编号')?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label('名称') ?>
 

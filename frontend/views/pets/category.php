@@ -20,27 +20,7 @@ $num = 1;
 
 <body>
 
-<div class="">
-
-    <div id="mycarousel" class="carousel slide" data-ride="carousel">
-
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-                <a href="">
-                    <img class="d-block w-100 picture" src="/bs3/frontend/views/public/image/c9.jpg" alt="First slide">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>First slide label</h5>
-                        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-
-    </div>
-</div>
-
-<div class="container-fluid aa pt">
+<div class="container pt">
     <div class="row">
 
 
@@ -53,7 +33,7 @@ $num = 1;
                          style="background-color: #64c9b9;margin-bottom: 0;padding: 10px;
                                  background:
                                  /*linear-gradient(-135deg,transparent 40px,#64c9b9 0) top right;*/
-                                 linear-gradient(135deg,transparent 15px, #64c9b9 0) top left;
+                                 linear-gradient(135deg,transparent 15px, #ffdcb9 0) top left;
                                  /*linear-gradient(-45deg,transparent 15px, #64c9b9 0) bottom right;*/
                                  /*background-size: 50% 50%;background-repeat: no-repeat;*/
 ">
@@ -61,14 +41,14 @@ $num = 1;
                             <!--                                <span class="">--><? //= $num++ ?><!--F</span>-->
                             <span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>
 
-                            <span style="">宠物猫类别</span>
+                            <span style="color: #9f5000">宠物猫类别</span>
                             <span style="">&nbsp;&nbsp;&nbsp;&nbsp; </span>
                         </h4>
                     </div>
 
                 </div>
             </div>
-            <hr style="margin-top: 0;background-color: #64c9b9;height: 1px;"/>
+            <hr style="margin-top: 0;background-color: #ffdcb9;height: 1px;"/>
 
             <div class="row">
                 <?php foreach ($model as $m) : ?>
@@ -78,7 +58,7 @@ $num = 1;
 
 
                             <a href="<?= Url::to(['/pets/details', 'id' => $m->id])?>">
-                                <img src="<?= $m['picture'] ?>" alt="" class="card-img-top">
+                                <img src="<?= $m['picture'] ?>" alt="" class="card-img-top kpimage">
                             </a>
 
 

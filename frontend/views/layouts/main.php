@@ -66,7 +66,10 @@ $this->title = '宠物猫商城';
 
 <footer class="footer">
     <div class="container text-center">
-        <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> 中国猫猫网 &nbsp;&nbsp;&nbsp;Copyright &copy;
+
+        <p class="pull-left">&copy;  <?= Html::encode(Yii::$app->name) ?>网站所有 &nbsp;&nbsp;&nbsp;
+            <?= Html::a('后台管理系统', 'http://localhost/bs3/backend/web/') ?>入口
+            &nbsp;&nbsp;&nbsp;Copyright &copy;
             2019-<?= date('Y') ?></p>
     </div>
 </footer>
@@ -113,8 +116,8 @@ $this->title = '宠物猫商城';
         $(".min").click(function () {
             var t = $(this).parent().find('input[class*=num]');
             t.val(parseInt(t.val()) - 1)
-            if (parseInt(t.val()) < 0) {
-                t.val(0);
+            if (parseInt(t.val()) <= 0) {
+                t.val(1);
             }
             setTotal();
         })
